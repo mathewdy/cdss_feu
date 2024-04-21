@@ -2,7 +2,7 @@
 ob_start();
 session_start();
 include('.././connection/connection.php');
-$_SESSION['account_id'] . '<br>';
+echo $_SESSION['account_id'] . '<br>';
 $_SESSION['first_name']. '<br>';
 $_SESSION['last_name'] . '<br>';
 $_SESSION['username'] . '<br>';

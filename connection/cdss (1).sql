@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2024 at 04:44 PM
+-- Generation Time: Apr 21, 2024 at 05:54 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -72,13 +72,8 @@ CREATE TABLE `fathers` (
   `middle_name` varchar(150) NOT NULL,
   `last_name` varchar(150) NOT NULL,
   `birthday` date NOT NULL,
-  `house_number` varchar(150) NOT NULL,
-  `street` varchar(150) NOT NULL,
-  `subdivision` varchar(150) NOT NULL,
-  `brgy` varchar(150) NOT NULL,
-  `city` varchar(150) NOT NULL,
-  `region` varchar(150) NOT NULL,
-  `zip_code` int(100) NOT NULL,
+  `address` varchar(500) NOT NULL,
+  `image` text NOT NULL,
   `date_created` date NOT NULL,
   `date_updated` date NOT NULL,
   `modified_by` int(11) NOT NULL
@@ -149,12 +144,15 @@ CREATE TABLE `fourth_month` (
 
 CREATE TABLE `infants` (
   `id` int(11) NOT NULL,
-  `account_id` int(11) NOT NULL,
+  `patient_id` int(11) NOT NULL,
   `first_name` varchar(100) NOT NULL,
   `middle_name` varchar(100) NOT NULL,
   `last_name` varchar(100) NOT NULL,
   `suffix` varchar(100) NOT NULL,
-  `birthday` date NOT NULL,
+  `birthday` varchar(150) NOT NULL,
+  `gender` int(11) NOT NULL,
+  `marital_status` varchar(250) NOT NULL,
+  `image` text NOT NULL,
   `id_mother_parent` int(11) NOT NULL,
   `id_father_parent` int(11) NOT NULL,
   `id_remarks` int(11) NOT NULL,
@@ -162,6 +160,14 @@ CREATE TABLE `infants` (
   `date_updated` date NOT NULL,
   `modified_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `infants`
+--
+
+INSERT INTO `infants` (`id`, `patient_id`, `first_name`, `middle_name`, `last_name`, `suffix`, `birthday`, `gender`, `marital_status`, `image`, `id_mother_parent`, `id_father_parent`, `id_remarks`, `date_created`, `date_updated`, `modified_by`) VALUES
+(44, 0, '', '', '', '', '', 0, '', 'WIN_20230901_10_53_24_Pro.jpg', 0, 0, 0, '0000-00-00', '0000-00-00', 0),
+(45, 0, '', '', '', '', '', 0, '', 'WIN_20240124_22_51_30_Pro.jpg', 0, 0, 0, '0000-00-00', '0000-00-00', 0);
 
 -- --------------------------------------------------------
 
@@ -176,13 +182,8 @@ CREATE TABLE `mothers` (
   `middle_name` varchar(100) NOT NULL,
   `last_name` varchar(100) NOT NULL,
   `birthday` date NOT NULL,
-  `house_number` varchar(100) NOT NULL,
-  `street` varchar(110) NOT NULL,
-  `subdivision` varchar(150) NOT NULL,
-  `brgy` varchar(150) NOT NULL,
-  `city` varchar(150) NOT NULL,
-  `region` varchar(150) NOT NULL,
-  `zip_code` int(50) NOT NULL,
+  `address` varchar(500) NOT NULL,
+  `image` text NOT NULL,
   `date_created` date NOT NULL,
   `date_updated` date NOT NULL,
   `modified_by` int(11) NOT NULL
@@ -329,7 +330,7 @@ CREATE TABLE `twelfth_month` (
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `account_id` int(11) NOT NULL,
+  `account_id` int(50) NOT NULL,
   `username` varchar(150) NOT NULL,
   `password` varchar(255) NOT NULL,
   `first_name` varchar(150) NOT NULL,
@@ -344,10 +345,19 @@ CREATE TABLE `users` (
   `city` varchar(150) NOT NULL,
   `region` varchar(150) NOT NULL,
   `zipcode` int(20) NOT NULL,
-  `image` varchar(255) NOT NULL,
+  `image` blob NOT NULL,
   `date_created` date NOT NULL,
   `date_updated` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `account_id`, `username`, `password`, `first_name`, `middle_name`, `last_name`, `role`, `birthday`, `house_number`, `street`, `subdivision`, `brgy`, `city`, `region`, `zipcode`, `image`, `date_created`, `date_updated`) VALUES
+(7, 20228296, 'mathew', '$2y$10$pQblCxnBM55s9szJ0kkngO6waeShIbZ3pBuE8ptNI6z5RQz/i4.Qy', 'mathew', 'francisco', 'dalisay', 1, '2024-04-20', 'nepogy', 'bodyl', 'vymyqyfi', 'wylobo', 'tyzaluvog', 'qavogag', 0, 0x3433343733363235305f3935383739393932393032303435315f343834343030303236373534383831373435345f6e2e6a7067, '2024-04-20', '2024-04-20'),
+(8, 20227797, 'mathew123', '$2y$10$.LvZrXLT6PGEvvVmKm13pOwflKazsI3EQpMGmsVC5iBHwOQBgctSa', 'mathew', 'francisco', 'dalisay', 1, '2024-04-20', 'nepogy', 'bodyl', 'vymyqyfi', 'wylobo', 'tyzaluvog', 'qavogag', 0, 0x706963747572652e6a7067, '2024-04-20', '2024-04-20'),
+(9, 20222980, 'mathew1234', '$2y$10$QABh9UF/O9D14K2/YMymLu1PQRMXzRC3TLdGQFBn1s.y/MU8.SA6.', 'mathew', 'francisco', 'dalisay', 2, '2024-04-20', 'nepogy', 'bodyl', 'vymyqyfi', 'wylobo', 'tyzaluvog', 'qavogag', 0, 0x706963747572652e6a7067, '2024-04-20', '2024-04-20');
 
 --
 -- Indexes for dumped tables
@@ -524,7 +534,7 @@ ALTER TABLE `fourth_month`
 -- AUTO_INCREMENT for table `infants`
 --
 ALTER TABLE `infants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `mothers`
@@ -578,7 +588,7 @@ ALTER TABLE `twelfth_month`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
@@ -625,14 +635,6 @@ ALTER TABLE `first_month`
 ALTER TABLE `fourth_month`
   ADD CONSTRAINT `fourth_month_ibfk_1` FOREIGN KEY (`id_infant`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fourth_month_ibfk_2` FOREIGN KEY (`modified_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `infants`
---
-ALTER TABLE `infants`
-  ADD CONSTRAINT `infants_ibfk_1` FOREIGN KEY (`modified_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `infants_ibfk_2` FOREIGN KEY (`id_mother_parent`) REFERENCES `mothers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `infants_ibfk_3` FOREIGN KEY (`id_father_parent`) REFERENCES `fathers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `mothers`
