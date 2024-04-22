@@ -279,7 +279,7 @@ $_SESSION['username'] . '<br>';
               <td><?php echo $row_patients['patient_last_name']?></td>
               <td><?php echo date("Y-M-d",strtotime($row_patients['patient_date_of_birth']))?></td>
               <td><a href="">Delete</a></td>
-              <td><a href="">Edit</a></td>
+              <td><a href="edit-patient.php?patient_id=<?php echo $row_patients['patient_id']?>">Edit</a></td>
             </tr>
           <?php
         }
