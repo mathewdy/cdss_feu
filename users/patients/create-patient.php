@@ -309,6 +309,41 @@ if(isset($_POST['create_patient'])){
     $filename = $_FILES['image_father']['name'];
 
     $query_check_father = "SELECT * FROM fathers WHERE first_name = '$first_name_father' AND middle_name ='$middle_name_father' AND last_name = '$last_name_father' AND date_of_birth = '$date_of_birth_father' AND address = '$address_father' ";
+    $result_check_father = mysqli_query($conn,$query_check_father);
+
+    if(mysqli_num_rows($result_check_father) > 0){
+        echo "father already added";
+    }else{
+        $query_father = "INSERT INTO father (first_name,middle_name,last_name,date_of_birth,address,image,date_created,date_updated,modified_by) VALUES ('$first_name_father', '$middle_name_father','$last_name_father', '$date_of_birth_father','$address_father','$image_father','$date', '$date', '$account_id_user' )";
+        $result_father = mysqli_query($conn,$query_father);
+
+        if($result_father) {
+            echo "added father"; 
+        }else{
+            echo "not added father";
+        }
+    }
+
+
+    foreach($patient_id as $key => $value){
+        $data_patient_id = $patient_id[$key];
+
+        $query_validation_patient_id = "SELECT * FROM patients WHERE patient_id = '$data_patient_id' ";
+        $result_validation_patient_id = mysqli_query($conn,$query_validation_patient_id);
+
+        if($result_validation_patient_id (mysqli_num_rows) > 0){
+            echo "patient id already added"
+        }else{
+            $query_insert_patient_id = "INSERT INTO patients (patient_id) VALUES ('$data_patient_id')";
+            $result_insert_patient_id = mysqli_query($conn,$query_insert_patient_id);
+            if($result_insert_patient_id){
+                echo "patient_id added for father";
+            }else{
+                echo "patient_id not added for father";
+            }
+        }
+    }
+
 }
 
 ob_end_flush();
