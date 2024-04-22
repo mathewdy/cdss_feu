@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2024 at 05:30 AM
+-- Generation Time: Apr 22, 2024 at 07:03 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -67,6 +67,7 @@ CREATE TABLE `eleventh_month` (
 
 CREATE TABLE `fathers` (
   `id` int(11) NOT NULL,
+  `account_id` int(11) NOT NULL,
   `patient_id` int(50) NOT NULL,
   `first_name` varchar(150) NOT NULL,
   `middle_name` varchar(150) NOT NULL,
@@ -78,6 +79,15 @@ CREATE TABLE `fathers` (
   `date_updated` date NOT NULL,
   `modified_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `fathers`
+--
+
+INSERT INTO `fathers` (`id`, `account_id`, `patient_id`, `first_name`, `middle_name`, `last_name`, `date_of_birth`, `address`, `image`, `date_created`, `date_updated`, `modified_by`) VALUES
+(5, 20245937, 0, 'Jameson', 'Yuri', 'Howard', '2013-08-01', 'Zephania', '04715cdd-7c4b-46ba-871a-f8cb8541d199.jfif', '2024-04-23', '2024-04-23', 20228296),
+(6, 20245937, 0, 'Jameson', 'Yuri', 'Howard', '2013-08-01', 'Zephania', '04715cdd-7c4b-46ba-871a-f8cb8541d199.jfif', '2024-04-23', '2024-04-23', 20228296),
+(7, 20245937, 0, 'Jameson', 'Yuri', 'Howard', '2013-08-01', 'Zephania', '04715cdd-7c4b-46ba-871a-f8cb8541d199.jfif', '2024-04-23', '2024-04-23', 20228296);
 
 -- --------------------------------------------------------
 
@@ -166,8 +176,9 @@ CREATE TABLE `infants` (
 --
 
 INSERT INTO `infants` (`id`, `patient_id`, `first_name`, `middle_name`, `last_name`, `suffix`, `date_of_birth`, `gender`, `marital_status`, `image`, `id_mother_parent`, `id_father_parent`, `id_remarks`, `date_created`, `date_updated`, `modified_by`) VALUES
-(128, 30, 'Hiroko', 'Xena', 'Kaden', 'Abel', '1989-06-23', 2, '1', '6c7be8fb-eca6-4406-8fe0-0920e4cef805.jpg', 20246870, 20246392, 0, '2024-04-22', '2024-04-22', '20228296'),
-(129, 45, 'Daphne', 'Ivy', 'Troy', 'Joan', '1977-05-19', 2, '1', '', 20244061, 20241823, 0, '2024-04-22', '2024-04-22', '20228296');
+(212, 33643, 'Wilma', 'Sybill', 'Alexis', 'Vincent', '2006-06-27', 2, '1', '435181335_1504384160141132_4613500189730186599_n.png', 20245580, 20245937, 0, '2024-04-23', '2024-04-23', '20228296'),
+(213, 28718, 'Morgan', 'Marsden', 'Lydia', 'Macy', '2014-01-28', 1, '3', 'WIN_20230901_10_53_24_Pro.jpg', 20245580, 20245937, 0, '2024-04-23', '2024-04-23', '20228296'),
+(214, 24318, 'Raphael', 'Alexa', 'Alvin', 'Yetta', '2020-09-19', 1, '1', '434736250_958799929020451_4844000267548817454_n.jpg', 20245580, 20245937, 0, '2024-04-23', '2024-04-23', '20228296');
 
 -- --------------------------------------------------------
 
@@ -177,6 +188,7 @@ INSERT INTO `infants` (`id`, `patient_id`, `first_name`, `middle_name`, `last_na
 
 CREATE TABLE `mothers` (
   `id` int(11) NOT NULL,
+  `account_id` int(11) NOT NULL,
   `patient_id` int(11) NOT NULL,
   `first_name` varchar(100) NOT NULL,
   `middle_name` varchar(100) NOT NULL,
@@ -188,6 +200,15 @@ CREATE TABLE `mothers` (
   `date_updated` date NOT NULL,
   `modified_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `mothers`
+--
+
+INSERT INTO `mothers` (`id`, `account_id`, `patient_id`, `first_name`, `middle_name`, `last_name`, `date_of_birth`, `address`, `image`, `date_created`, `date_updated`, `modified_by`) VALUES
+(37, 20245580, 33643, 'Ignacia', 'Bianca', 'Kerry', '2018-10-19', 'Bruno', '6c7be8fb-eca6-4406-8fe0-0920e4cef805.jpg', '2024-04-23', '2024-04-23', 20228296),
+(38, 20245580, 28718, 'Ignacia', 'Bianca', 'Kerry', '2018-10-19', 'Bruno', '6c7be8fb-eca6-4406-8fe0-0920e4cef805.jpg', '2024-04-23', '2024-04-23', 20228296),
+(39, 20245580, 24318, 'Ignacia', 'Bianca', 'Kerry', '2018-10-19', 'Bruno', '6c7be8fb-eca6-4406-8fe0-0920e4cef805.jpg', '2024-04-23', '2024-04-23', 20228296);
 
 -- --------------------------------------------------------
 
@@ -510,7 +531,7 @@ ALTER TABLE `eleventh_month`
 -- AUTO_INCREMENT for table `fathers`
 --
 ALTER TABLE `fathers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `fifth_month`
@@ -534,13 +555,13 @@ ALTER TABLE `fourth_month`
 -- AUTO_INCREMENT for table `infants`
 --
 ALTER TABLE `infants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=215;
 
 --
 -- AUTO_INCREMENT for table `mothers`
 --
 ALTER TABLE `mothers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `ninth_month`
