@@ -53,7 +53,7 @@ include('../connection/connection.php');
                   <a href="#" class="auth-link text-black">Forgot password?</a>
                 </div>
                 <div class="text-center mt-4 font-weight-light">
-                  Don't have an account? <a href="registration.php" class="text-primary">Create</a>
+                  Don't have an account? <a href="register.php" class="text-primary">Create</a>
                 </div>
               </form>
             </div>
@@ -66,17 +66,18 @@ include('../connection/connection.php');
   </div>
   <!-- container-scroller -->
   <!-- plugins:js -->
-  <script src="../src/vendors/js/vendor.bundle.base.js"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page -->
-  <!-- End plugin js for this page -->
-  <!-- inject:js -->
-  <script src="../src/js/off-canvas.js"></script>
-  <script src="../src/js/hoverable-collapse.js"></script>
-  <script src="../src/js/template.js"></script>
-  <script src="../src/js/settings.js"></script>
-  <script src="../src/js/todolist.js"></script>
-  <!-- endinject -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>  endinject -->
+<script src="../src/vendors/sweetalert/sweetalert.min.js"></script>
+<script src="../src/vendors/js/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script src="../src/js/off-canvas.js"></script>
+<script src="../src/js/hoverable-collapse.js"></script>
+<script src="../src/js/template.js"></script>
+<script src="../src/js/settings.js"></script>
+<script src="../src/js/todolist.js"></script>
 </body>
 </html>
 
@@ -105,7 +106,14 @@ if(isset($_POST['login'])){
             }
         }
     }else{
-        echo "User not found" . $conn->error;
+        echo '<script type="text/javascript">
+
+        $(document).ready(function(){
+            sweetAlert("Oops...", "Something went wrong!", "error");
+        });
+        
+        </script>
+        ';
     }
 
 }
