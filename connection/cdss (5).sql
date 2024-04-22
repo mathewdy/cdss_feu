@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2024 at 08:45 PM
+-- Generation Time: Apr 22, 2024 at 08:59 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -30,9 +30,6 @@ SET time_zone = "+00:00";
 CREATE TABLE `eighth_month` (
   `id` int(11) NOT NULL,
   `patient_id` int(11) NOT NULL,
-  `vital_signs` text NOT NULL,
-  `lab_values` text NOT NULL,
-  `medication` text NOT NULL,
   `milestone_development` text NOT NULL,
   `deviation_intervention` text NOT NULL,
   `date_created` date NOT NULL,
@@ -49,9 +46,6 @@ CREATE TABLE `eighth_month` (
 CREATE TABLE `eleventh_month` (
   `id` int(11) NOT NULL,
   `patient_id` int(11) NOT NULL,
-  `vital_signs` text NOT NULL,
-  `lab_values` text NOT NULL,
-  `medication` text NOT NULL,
   `milestone_development` text NOT NULL,
   `deviation_intervention` text NOT NULL,
   `date_created` date NOT NULL,
@@ -98,9 +92,6 @@ INSERT INTO `fathers` (`id`, `account_id`, `patient_id`, `first_name`, `middle_n
 CREATE TABLE `fifth_month` (
   `id` int(11) NOT NULL,
   `patient_id` int(11) NOT NULL,
-  `vital_signs` text NOT NULL,
-  `lab_values` text NOT NULL,
-  `medication` text NOT NULL,
   `milestone_development` text NOT NULL,
   `deviation_intervention` text NOT NULL,
   `date_created` date NOT NULL,
@@ -116,10 +107,7 @@ CREATE TABLE `fifth_month` (
 
 CREATE TABLE `first_month` (
   `id` int(11) NOT NULL,
-  `patien` int(11) NOT NULL,
-  `vital_signs` varchar(250) NOT NULL,
-  `lab_values` text NOT NULL,
-  `medication` text NOT NULL,
+  `patient_id` int(11) NOT NULL,
   `milestone_development` text NOT NULL,
   `deviation_intervention` text NOT NULL,
   `date_created` date NOT NULL,
@@ -136,9 +124,6 @@ CREATE TABLE `first_month` (
 CREATE TABLE `fourth_month` (
   `id` int(11) NOT NULL,
   `patient_id` int(11) NOT NULL,
-  `vital_signs` text NOT NULL,
-  `lab_values` text NOT NULL,
-  `medication` text NOT NULL,
   `milestone_development` text NOT NULL,
   `deviation_intervention` text NOT NULL,
   `date_created` date NOT NULL,
@@ -219,9 +204,6 @@ INSERT INTO `mothers` (`id`, `account_id`, `patient_id`, `first_name`, `middle_n
 CREATE TABLE `ninth_month` (
   `id` int(11) NOT NULL,
   `patient_id` int(11) NOT NULL,
-  `vital_signs` text NOT NULL,
-  `lab_values` text NOT NULL,
-  `medication` text NOT NULL,
   `milestone_development` text NOT NULL,
   `deviation_intervention` text NOT NULL,
   `date_created` date NOT NULL,
@@ -238,9 +220,6 @@ CREATE TABLE `ninth_month` (
 CREATE TABLE `second_month` (
   `id` int(11) NOT NULL,
   `patient_id` int(11) NOT NULL,
-  `vital_signs` text NOT NULL,
-  `lab_values` text NOT NULL,
-  `medication` text NOT NULL,
   `milestone_development` text NOT NULL,
   `deviation_intervention` text NOT NULL,
   `date_created` date NOT NULL,
@@ -257,9 +236,6 @@ CREATE TABLE `second_month` (
 CREATE TABLE `seventh_month` (
   `id` int(11) NOT NULL,
   `patient_id` int(11) NOT NULL,
-  `vital_signs` text NOT NULL,
-  `lab_values` text NOT NULL,
-  `medication` text NOT NULL,
   `milestone_development` text NOT NULL,
   `deviation_intervention` text NOT NULL,
   `date_created` date NOT NULL,
@@ -276,9 +252,6 @@ CREATE TABLE `seventh_month` (
 CREATE TABLE `sixth_month` (
   `id` int(11) NOT NULL,
   `patient_id` int(11) NOT NULL,
-  `vital_signs` text NOT NULL,
-  `lab_values` text NOT NULL,
-  `medication` text NOT NULL,
   `milestone_development` text NOT NULL,
   `deviation_intervention` text NOT NULL,
   `date_created` date NOT NULL,
@@ -295,9 +268,6 @@ CREATE TABLE `sixth_month` (
 CREATE TABLE `tenth_month` (
   `id` int(11) NOT NULL,
   `patient_id` int(11) NOT NULL,
-  `vital_signs` text NOT NULL,
-  `lab_values` text NOT NULL,
-  `medication` text NOT NULL,
   `milestone_development` text NOT NULL,
   `deviation_intervention` text NOT NULL,
   `date_created` date NOT NULL,
@@ -314,9 +284,6 @@ CREATE TABLE `tenth_month` (
 CREATE TABLE `thrid_month` (
   `id` int(11) NOT NULL,
   `patient_id` int(11) NOT NULL,
-  `vital_signs` text NOT NULL,
-  `lab_values` text NOT NULL,
-  `medication` text NOT NULL,
   `milestone_development` text NOT NULL,
   `deviation_intervention` text NOT NULL,
   `date_created` date NOT NULL,
@@ -333,9 +300,6 @@ CREATE TABLE `thrid_month` (
 CREATE TABLE `twelfth_month` (
   `id` int(11) NOT NULL,
   `patient_id` int(11) NOT NULL,
-  `vital_signs` varchar(5000) NOT NULL,
-  `lab_values` text NOT NULL,
-  `medication` text NOT NULL,
   `milestone_development` text NOT NULL,
   `deviation_intervention` text NOT NULL,
   `date_created` date NOT NULL,
@@ -423,7 +387,7 @@ ALTER TABLE `fifth_month`
 --
 ALTER TABLE `first_month`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_infant` (`patien`,`modified_by`),
+  ADD KEY `id_infant` (`patient_id`,`modified_by`),
   ADD KEY `modified_by` (`modified_by`);
 
 --
@@ -642,7 +606,7 @@ ALTER TABLE `fifth_month`
 -- Constraints for table `first_month`
 --
 ALTER TABLE `first_month`
-  ADD CONSTRAINT `first_month_ibfk_1` FOREIGN KEY (`patien`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `first_month_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `first_month_ibfk_2` FOREIGN KEY (`modified_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

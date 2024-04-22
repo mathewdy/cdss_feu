@@ -274,10 +274,10 @@ $_SESSION['username'] . '<br>';
 
             <tr>
               <td><?php echo $row_patients['patient_id']?></td>
-              <td><?php echo $row_patients['first_name']?></td>
-              <td><?php echo $row_patients['middle_name']?></td>
-              <td><?php echo $row_patients['last_name']?></td>
-              <td><?php echo date("Y-M-d",strtotime($row_patients['date_of_birth']))?></td>
+              <td><?php echo $row_patients['patient_first_name']?></td>
+              <td><?php echo $row_patients['patient_middle_name']?></td>
+              <td><?php echo $row_patients['patient_last_name']?></td>
+              <td><?php echo date("Y-M-d",strtotime($row_patients['patient_date_of_birth']))?></td>
               <td><a href="">Delete</a></td>
               <td><a href="">Edit</a></td>
             </tr>

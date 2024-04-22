@@ -153,13 +153,6 @@ if(isset($_POST['create_account'])){
     $allowed_extension = array('gif','png','jpg','jpeg', 'PNG', 'GIF', 'JPG', 'JPEG');
     $filename = $_FILES['user_image']['name'];
     $file_extension = pathinfo($filename, PATHINFO_EXTENSION);
-    
-   
-
-    //image
-    $user_image = $_FILES['user_image']['name'];
-    $allowed_extension = array('gif','png','jpg','jpeg', 'PNG', 'GIF', 'JPG', 'JPEG');
-    $filename = $_FILES['user_image']['name'];
 
     $account_id = "2024".rand('1','10') . substr(str_shuffle(str_repeat("0123456789", 5)), 0, 3) ;
 
