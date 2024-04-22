@@ -330,7 +330,7 @@ if(isset($_POST['create_patient'])){
             foreach($run_patient_id_father as $row_patient_id_father){
                 $row_patient_id_father['patient_id'];
 
-                $query_father = "INSERT INTO fathers (account_id,first_name,middle_name,last_name,date_of_birth,address,image,date_created,date_updated,modified_by) VALUES ('$account_id_father','$first_name_father', '$middle_name_father','$last_name_father', '$date_of_birth_father','$address_father','$image_father','$date', '$date', '$account_id_user' )";
+                $query_father = "INSERT INTO fathers (account_id,patient_id,first_name,middle_name,last_name,date_of_birth,address,image,date_created,date_updated,modified_by) VALUES ('$account_id_father','".$row_patient_id_father['patient_id']."','$first_name_father', '$middle_name_father','$last_name_father', '$date_of_birth_father','$address_father','$image_father','$date', '$date', '$account_id_user' )";
                 $result_father = mysqli_query($conn,$query_father);
 
                 if($result_father) {

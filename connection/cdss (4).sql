@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2024 at 07:03 PM
+-- Generation Time: Apr 22, 2024 at 08:45 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `eighth_month` (
   `id` int(11) NOT NULL,
-  `id_infant` int(11) NOT NULL,
+  `patient_id` int(11) NOT NULL,
   `vital_signs` text NOT NULL,
   `lab_values` text NOT NULL,
   `medication` text NOT NULL,
@@ -48,7 +48,7 @@ CREATE TABLE `eighth_month` (
 
 CREATE TABLE `eleventh_month` (
   `id` int(11) NOT NULL,
-  `id_infant` int(11) NOT NULL,
+  `patient_id` int(11) NOT NULL,
   `vital_signs` text NOT NULL,
   `lab_values` text NOT NULL,
   `medication` text NOT NULL,
@@ -85,9 +85,9 @@ CREATE TABLE `fathers` (
 --
 
 INSERT INTO `fathers` (`id`, `account_id`, `patient_id`, `first_name`, `middle_name`, `last_name`, `date_of_birth`, `address`, `image`, `date_created`, `date_updated`, `modified_by`) VALUES
-(5, 20245937, 0, 'Jameson', 'Yuri', 'Howard', '2013-08-01', 'Zephania', '04715cdd-7c4b-46ba-871a-f8cb8541d199.jfif', '2024-04-23', '2024-04-23', 20228296),
-(6, 20245937, 0, 'Jameson', 'Yuri', 'Howard', '2013-08-01', 'Zephania', '04715cdd-7c4b-46ba-871a-f8cb8541d199.jfif', '2024-04-23', '2024-04-23', 20228296),
-(7, 20245937, 0, 'Jameson', 'Yuri', 'Howard', '2013-08-01', 'Zephania', '04715cdd-7c4b-46ba-871a-f8cb8541d199.jfif', '2024-04-23', '2024-04-23', 20228296);
+(8, 20242953, 61955, 'Erich', 'Kerry', 'Clark', '1981-05-23', '50 First Freeway', '', '2024-04-23', '2024-04-23', 20243457),
+(9, 20242953, 40754, 'Erich', 'Kerry', 'Clark', '1981-05-23', '50 First Freeway', '', '2024-04-23', '2024-04-23', 20243457),
+(10, 20242953, 54610, 'Erich', 'Kerry', 'Clark', '1981-05-23', '50 First Freeway', '', '2024-04-23', '2024-04-23', 20243457);
 
 -- --------------------------------------------------------
 
@@ -97,7 +97,7 @@ INSERT INTO `fathers` (`id`, `account_id`, `patient_id`, `first_name`, `middle_n
 
 CREATE TABLE `fifth_month` (
   `id` int(11) NOT NULL,
-  `id_infant` int(11) NOT NULL,
+  `patient_id` int(11) NOT NULL,
   `vital_signs` text NOT NULL,
   `lab_values` text NOT NULL,
   `medication` text NOT NULL,
@@ -116,7 +116,7 @@ CREATE TABLE `fifth_month` (
 
 CREATE TABLE `first_month` (
   `id` int(11) NOT NULL,
-  `id_infant` int(11) NOT NULL,
+  `patien` int(11) NOT NULL,
   `vital_signs` varchar(250) NOT NULL,
   `lab_values` text NOT NULL,
   `medication` text NOT NULL,
@@ -135,7 +135,7 @@ CREATE TABLE `first_month` (
 
 CREATE TABLE `fourth_month` (
   `id` int(11) NOT NULL,
-  `id_infant` int(11) NOT NULL,
+  `patient_id` int(11) NOT NULL,
   `vital_signs` text NOT NULL,
   `lab_values` text NOT NULL,
   `medication` text NOT NULL,
@@ -176,9 +176,9 @@ CREATE TABLE `infants` (
 --
 
 INSERT INTO `infants` (`id`, `patient_id`, `first_name`, `middle_name`, `last_name`, `suffix`, `date_of_birth`, `gender`, `marital_status`, `image`, `id_mother_parent`, `id_father_parent`, `id_remarks`, `date_created`, `date_updated`, `modified_by`) VALUES
-(212, 33643, 'Wilma', 'Sybill', 'Alexis', 'Vincent', '2006-06-27', 2, '1', '435181335_1504384160141132_4613500189730186599_n.png', 20245580, 20245937, 0, '2024-04-23', '2024-04-23', '20228296'),
-(213, 28718, 'Morgan', 'Marsden', 'Lydia', 'Macy', '2014-01-28', 1, '3', 'WIN_20230901_10_53_24_Pro.jpg', 20245580, 20245937, 0, '2024-04-23', '2024-04-23', '20228296'),
-(214, 24318, 'Raphael', 'Alexa', 'Alvin', 'Yetta', '2020-09-19', 1, '1', '434736250_958799929020451_4844000267548817454_n.jpg', 20245580, 20245937, 0, '2024-04-23', '2024-04-23', '20228296');
+(215, 61955, 'Derek', 'Jerome', 'Camden', 'Griffin', '1987-10-31', 2, '4', '', 20243943, 20242953, 0, '2024-04-23', '2024-04-23', '20243457'),
+(216, 40754, 'Yasir', 'Garrett', 'Naida', 'Jesse', '1994-03-09', 1, '4', '', 20243943, 20242953, 0, '2024-04-23', '2024-04-23', '20243457'),
+(217, 54610, 'Imelda', 'Yvette', 'Whitney', 'Jakeem', '2015-11-04', 2, '4', '', 20243943, 20242953, 0, '2024-04-23', '2024-04-23', '20243457');
 
 -- --------------------------------------------------------
 
@@ -206,9 +206,9 @@ CREATE TABLE `mothers` (
 --
 
 INSERT INTO `mothers` (`id`, `account_id`, `patient_id`, `first_name`, `middle_name`, `last_name`, `date_of_birth`, `address`, `image`, `date_created`, `date_updated`, `modified_by`) VALUES
-(37, 20245580, 33643, 'Ignacia', 'Bianca', 'Kerry', '2018-10-19', 'Bruno', '6c7be8fb-eca6-4406-8fe0-0920e4cef805.jpg', '2024-04-23', '2024-04-23', 20228296),
-(38, 20245580, 28718, 'Ignacia', 'Bianca', 'Kerry', '2018-10-19', 'Bruno', '6c7be8fb-eca6-4406-8fe0-0920e4cef805.jpg', '2024-04-23', '2024-04-23', 20228296),
-(39, 20245580, 24318, 'Ignacia', 'Bianca', 'Kerry', '2018-10-19', 'Bruno', '6c7be8fb-eca6-4406-8fe0-0920e4cef805.jpg', '2024-04-23', '2024-04-23', 20228296);
+(40, 20243943, 61955, 'Desirae', 'Bert', 'August', '1981-08-24', '50 First Freeway', '', '2024-04-23', '2024-04-23', 20243457),
+(41, 20243943, 40754, 'Desirae', 'Bert', 'August', '1981-08-24', '50 First Freeway', '', '2024-04-23', '2024-04-23', 20243457),
+(42, 20243943, 54610, 'Desirae', 'Bert', 'August', '1981-08-24', '50 First Freeway', '', '2024-04-23', '2024-04-23', 20243457);
 
 -- --------------------------------------------------------
 
@@ -218,7 +218,7 @@ INSERT INTO `mothers` (`id`, `account_id`, `patient_id`, `first_name`, `middle_n
 
 CREATE TABLE `ninth_month` (
   `id` int(11) NOT NULL,
-  `id_infant` int(11) NOT NULL,
+  `patient_id` int(11) NOT NULL,
   `vital_signs` text NOT NULL,
   `lab_values` text NOT NULL,
   `medication` text NOT NULL,
@@ -237,7 +237,7 @@ CREATE TABLE `ninth_month` (
 
 CREATE TABLE `second_month` (
   `id` int(11) NOT NULL,
-  `id_infant` int(11) NOT NULL,
+  `patient_id` int(11) NOT NULL,
   `vital_signs` text NOT NULL,
   `lab_values` text NOT NULL,
   `medication` text NOT NULL,
@@ -256,7 +256,7 @@ CREATE TABLE `second_month` (
 
 CREATE TABLE `seventh_month` (
   `id` int(11) NOT NULL,
-  `id_infant` int(11) NOT NULL,
+  `patient_id` int(11) NOT NULL,
   `vital_signs` text NOT NULL,
   `lab_values` text NOT NULL,
   `medication` text NOT NULL,
@@ -275,7 +275,7 @@ CREATE TABLE `seventh_month` (
 
 CREATE TABLE `sixth_month` (
   `id` int(11) NOT NULL,
-  `id_infant` int(11) NOT NULL,
+  `patient_id` int(11) NOT NULL,
   `vital_signs` text NOT NULL,
   `lab_values` text NOT NULL,
   `medication` text NOT NULL,
@@ -294,7 +294,7 @@ CREATE TABLE `sixth_month` (
 
 CREATE TABLE `tenth_month` (
   `id` int(11) NOT NULL,
-  `id_infant` int(11) NOT NULL,
+  `patient_id` int(11) NOT NULL,
   `vital_signs` text NOT NULL,
   `lab_values` text NOT NULL,
   `medication` text NOT NULL,
@@ -313,7 +313,7 @@ CREATE TABLE `tenth_month` (
 
 CREATE TABLE `thrid_month` (
   `id` int(11) NOT NULL,
-  `id_infant` int(11) NOT NULL,
+  `patient_id` int(11) NOT NULL,
   `vital_signs` text NOT NULL,
   `lab_values` text NOT NULL,
   `medication` text NOT NULL,
@@ -332,7 +332,7 @@ CREATE TABLE `thrid_month` (
 
 CREATE TABLE `twelfth_month` (
   `id` int(11) NOT NULL,
-  `id_infant` int(11) NOT NULL,
+  `patient_id` int(11) NOT NULL,
   `vital_signs` varchar(5000) NOT NULL,
   `lab_values` text NOT NULL,
   `medication` text NOT NULL,
@@ -366,7 +366,7 @@ CREATE TABLE `users` (
   `city` varchar(150) NOT NULL,
   `region` varchar(150) NOT NULL,
   `zipcode` int(20) NOT NULL,
-  `image` blob NOT NULL,
+  `image` text NOT NULL,
   `date_created` date NOT NULL,
   `date_updated` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -376,9 +376,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `account_id`, `username`, `password`, `first_name`, `middle_name`, `last_name`, `role`, `date_of_birth`, `house_number`, `street`, `subdivision`, `brgy`, `city`, `region`, `zipcode`, `image`, `date_created`, `date_updated`) VALUES
-(7, 20228296, 'mathew', '$2y$10$pQblCxnBM55s9szJ0kkngO6waeShIbZ3pBuE8ptNI6z5RQz/i4.Qy', 'mathew', 'francisco', 'dalisay', 1, '2024-04-20', 'nepogy', 'bodyl', 'vymyqyfi', 'wylobo', 'tyzaluvog', 'qavogag', 0, 0x3433343733363235305f3935383739393932393032303435315f343834343030303236373534383831373435345f6e2e6a7067, '2024-04-20', '2024-04-20'),
-(8, 20227797, 'mathew123', '$2y$10$.LvZrXLT6PGEvvVmKm13pOwflKazsI3EQpMGmsVC5iBHwOQBgctSa', 'mathew', 'francisco', 'dalisay', 1, '2024-04-20', 'nepogy', 'bodyl', 'vymyqyfi', 'wylobo', 'tyzaluvog', 'qavogag', 0, 0x706963747572652e6a7067, '2024-04-20', '2024-04-20'),
-(9, 20222980, 'mathew1234', '$2y$10$QABh9UF/O9D14K2/YMymLu1PQRMXzRC3TLdGQFBn1s.y/MU8.SA6.', 'mathew', 'francisco', 'dalisay', 2, '2024-04-20', 'nepogy', 'bodyl', 'vymyqyfi', 'wylobo', 'tyzaluvog', 'qavogag', 0, 0x706963747572652e6a7067, '2024-04-20', '2024-04-20');
+(15, 20249732, 'nydetihamo', '$2y$10$xJUxKleXl6NL7uJlgDe/uu9/hJ67zhjsObyTEebmWpBXsAaBxrmYe', 'Lane', 'Marsden Fields', 'Webb', 1, '1980-01-19', '189', '18-May-1997', '01-Dec-2015', '26-Feb-2015', '30-May-1991', '20-Sep-2008', 10384, '', '2024-04-23', '2024-04-23'),
+(16, 20245819, 'silin', '$2y$10$PrDuxIw6M9.qQm7B86wFIOhQ7jT41RNVySdW0SQ0fvRJRThVa2bOC', 'Gillian', 'Cassandra Rios', 'Lucas', 2, '1997-10-16', '843', '14-May-1973', '08-Feb-2013', '22-May-1991', '02-Apr-2005', '27-Apr-1999', 99085, '', '2024-04-23', '2024-04-23'),
+(17, 202410018, 'dejegadeh', '$2y$10$YLSqD3JrQP3hR3E/U6I7O.Wfw19ibk7.nXKhm.m55mmysOtMMgT5O', 'Nasim', 'Callum Richmond', 'Roberts', 2, '2021-07-30', '290', '13-Sep-2006', '27-Jul-1992', '10-Jan-1999', '14-Sep-1995', '23-Aug-2017', 95549, '', '2024-04-23', '2024-04-23'),
+(18, 20243457, 'mathew', '$2y$10$3xsZzqbp6/wnhr1xX9BImOadgzbJvme6IQr0vVwTTLnANoHTA1vlS', 'Chloe', 'Faith Lewis', 'Foreman', 2, '2020-05-19', '134', '14-Mar-2023', '20-Mar-2012', '03-Oct-2018', '05-Mar-1973', '02-Dec-1981', 90232, '', '2024-04-23', '2024-04-23'),
+(19, 20249067, 'lasig', '$2y$10$Y3XO7hwrKayn5GwUQ8wSbObLlSn9Lmj2D0HVR4HsJYinC4pKghTZm', 'Declan', 'Hakeem Abbott', 'Guthrie', 1, '2018-10-29', '273', '23-Sep-1997', '07-Jul-1994', '14-May-1990', '21-Jan-1974', '21-Oct-1995', 19219, '', '2024-04-23', '2024-04-23');
 
 --
 -- Indexes for dumped tables
@@ -389,7 +391,7 @@ INSERT INTO `users` (`id`, `account_id`, `username`, `password`, `first_name`, `
 --
 ALTER TABLE `eighth_month`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_infant` (`id_infant`,`modified_by`),
+  ADD KEY `id_infant` (`patient_id`,`modified_by`),
   ADD KEY `modified_by` (`modified_by`);
 
 --
@@ -397,7 +399,7 @@ ALTER TABLE `eighth_month`
 --
 ALTER TABLE `eleventh_month`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_infant` (`id_infant`,`modified_by`),
+  ADD KEY `id_infant` (`patient_id`,`modified_by`),
   ADD KEY `modified_by` (`modified_by`);
 
 --
@@ -413,7 +415,7 @@ ALTER TABLE `fathers`
 --
 ALTER TABLE `fifth_month`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_infant` (`id_infant`,`modified_by`),
+  ADD KEY `id_infant` (`patient_id`,`modified_by`),
   ADD KEY `modified_by` (`modified_by`);
 
 --
@@ -421,7 +423,7 @@ ALTER TABLE `fifth_month`
 --
 ALTER TABLE `first_month`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_infant` (`id_infant`,`modified_by`),
+  ADD KEY `id_infant` (`patien`,`modified_by`),
   ADD KEY `modified_by` (`modified_by`);
 
 --
@@ -429,7 +431,7 @@ ALTER TABLE `first_month`
 --
 ALTER TABLE `fourth_month`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_infant` (`id_infant`,`modified_by`),
+  ADD KEY `id_infant` (`patient_id`,`modified_by`),
   ADD KEY `modified_by` (`modified_by`);
 
 --
@@ -454,7 +456,7 @@ ALTER TABLE `mothers`
 --
 ALTER TABLE `ninth_month`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_infant` (`id_infant`,`modified_by`),
+  ADD KEY `id_infant` (`patient_id`,`modified_by`),
   ADD KEY `modified_by` (`modified_by`);
 
 --
@@ -462,7 +464,7 @@ ALTER TABLE `ninth_month`
 --
 ALTER TABLE `second_month`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_infant` (`id_infant`,`modified_by`),
+  ADD KEY `id_infant` (`patient_id`,`modified_by`),
   ADD KEY `modified_by` (`modified_by`);
 
 --
@@ -470,7 +472,7 @@ ALTER TABLE `second_month`
 --
 ALTER TABLE `seventh_month`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_infant` (`id_infant`,`modified_by`),
+  ADD KEY `id_infant` (`patient_id`,`modified_by`),
   ADD KEY `modified_by` (`modified_by`);
 
 --
@@ -478,7 +480,7 @@ ALTER TABLE `seventh_month`
 --
 ALTER TABLE `sixth_month`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_infant` (`id_infant`,`modified_by`),
+  ADD KEY `id_infant` (`patient_id`,`modified_by`),
   ADD KEY `modified_by` (`modified_by`);
 
 --
@@ -486,7 +488,7 @@ ALTER TABLE `sixth_month`
 --
 ALTER TABLE `tenth_month`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_infant` (`id_infant`,`modified_by`),
+  ADD KEY `id_infant` (`patient_id`,`modified_by`),
   ADD KEY `modified_by` (`modified_by`);
 
 --
@@ -494,7 +496,7 @@ ALTER TABLE `tenth_month`
 --
 ALTER TABLE `thrid_month`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_infant` (`id_infant`,`modified_by`),
+  ADD KEY `id_infant` (`patient_id`,`modified_by`),
   ADD KEY `modified_by` (`modified_by`);
 
 --
@@ -502,7 +504,7 @@ ALTER TABLE `thrid_month`
 --
 ALTER TABLE `twelfth_month`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_infant` (`id_infant`,`modified_by`),
+  ADD KEY `id_infant` (`patient_id`,`modified_by`),
   ADD KEY `modified_by` (`modified_by`);
 
 --
@@ -531,7 +533,7 @@ ALTER TABLE `eleventh_month`
 -- AUTO_INCREMENT for table `fathers`
 --
 ALTER TABLE `fathers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `fifth_month`
@@ -555,13 +557,13 @@ ALTER TABLE `fourth_month`
 -- AUTO_INCREMENT for table `infants`
 --
 ALTER TABLE `infants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=215;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=218;
 
 --
 -- AUTO_INCREMENT for table `mothers`
 --
 ALTER TABLE `mothers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `ninth_month`
@@ -609,7 +611,7 @@ ALTER TABLE `twelfth_month`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables
@@ -619,77 +621,77 @@ ALTER TABLE `users`
 -- Constraints for table `eighth_month`
 --
 ALTER TABLE `eighth_month`
-  ADD CONSTRAINT `eighth_month_ibfk_1` FOREIGN KEY (`id_infant`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `eighth_month_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `eighth_month_ibfk_2` FOREIGN KEY (`modified_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `eleventh_month`
 --
 ALTER TABLE `eleventh_month`
-  ADD CONSTRAINT `eleventh_month_ibfk_1` FOREIGN KEY (`id_infant`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `eleventh_month_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `eleventh_month_ibfk_2` FOREIGN KEY (`modified_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `fifth_month`
 --
 ALTER TABLE `fifth_month`
-  ADD CONSTRAINT `fifth_month_ibfk_1` FOREIGN KEY (`id_infant`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fifth_month_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fifth_month_ibfk_2` FOREIGN KEY (`modified_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `first_month`
 --
 ALTER TABLE `first_month`
-  ADD CONSTRAINT `first_month_ibfk_1` FOREIGN KEY (`id_infant`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `first_month_ibfk_1` FOREIGN KEY (`patien`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `first_month_ibfk_2` FOREIGN KEY (`modified_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `fourth_month`
 --
 ALTER TABLE `fourth_month`
-  ADD CONSTRAINT `fourth_month_ibfk_1` FOREIGN KEY (`id_infant`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fourth_month_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fourth_month_ibfk_2` FOREIGN KEY (`modified_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `ninth_month`
 --
 ALTER TABLE `ninth_month`
-  ADD CONSTRAINT `ninth_month_ibfk_1` FOREIGN KEY (`id_infant`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ninth_month_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ninth_month_ibfk_2` FOREIGN KEY (`modified_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `second_month`
 --
 ALTER TABLE `second_month`
-  ADD CONSTRAINT `second_month_ibfk_1` FOREIGN KEY (`id_infant`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `second_month_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `second_month_ibfk_2` FOREIGN KEY (`modified_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `seventh_month`
 --
 ALTER TABLE `seventh_month`
-  ADD CONSTRAINT `seventh_month_ibfk_1` FOREIGN KEY (`id_infant`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `seventh_month_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `seventh_month_ibfk_2` FOREIGN KEY (`modified_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `sixth_month`
 --
 ALTER TABLE `sixth_month`
-  ADD CONSTRAINT `sixth_month_ibfk_1` FOREIGN KEY (`id_infant`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `sixth_month_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `sixth_month_ibfk_2` FOREIGN KEY (`modified_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tenth_month`
 --
 ALTER TABLE `tenth_month`
-  ADD CONSTRAINT `tenth_month_ibfk_1` FOREIGN KEY (`id_infant`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tenth_month_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tenth_month_ibfk_2` FOREIGN KEY (`modified_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `thrid_month`
 --
 ALTER TABLE `thrid_month`
-  ADD CONSTRAINT `thrid_month_ibfk_1` FOREIGN KEY (`id_infant`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `thrid_month_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `thrid_month_ibfk_2` FOREIGN KEY (`modified_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -697,7 +699,7 @@ ALTER TABLE `thrid_month`
 --
 ALTER TABLE `twelfth_month`
   ADD CONSTRAINT `twelfth_month_ibfk_1` FOREIGN KEY (`id`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `twelfth_month_ibfk_2` FOREIGN KEY (`id_infant`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `twelfth_month_ibfk_2` FOREIGN KEY (`patient_id`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `twelfth_month_ibfk_3` FOREIGN KEY (`modified_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 

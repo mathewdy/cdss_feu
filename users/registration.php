@@ -149,26 +149,21 @@ if(isset($_POST['create_account'])){
     date_default_timezone_set("Asia/Manila");
     $date = date('y-m-d');
     
-    //image
     $user_image = $_FILES['user_image']['name'];
     $allowed_extension = array('gif','png','jpg','jpeg', 'PNG', 'GIF', 'JPG', 'JPEG');
     $filename = $_FILES['user_image']['name'];
     $file_extension = pathinfo($filename, PATHINFO_EXTENSION);
+    
+   
+
+    //image
+    $user_image = $_FILES['user_image']['name'];
+    $allowed_extension = array('gif','png','jpg','jpeg', 'PNG', 'GIF', 'JPG', 'JPEG');
+    $filename = $_FILES['user_image']['name'];
 
     $account_id = "2024".rand('1','10') . substr(str_shuffle(str_repeat("0123456789", 5)), 0, 3) ;
 
-    if(!in_array($file_extension,$allowed_extension)){
-        echo "<script>alert('File not allowed'); </script>";
-        echo "<script>window.location.href='registration.php'</script>";
-    }else{
-        
-        if(file_exists("images/" .$_FILES['user_image']['name'])){
-            echo "<script>alert('Select other picture') </script>";
-            echo "<script>window.location.href='registration.php'</script>";
-            $filename = $_FILES['user_image']['name'];
-        }
-    }
-
+    
 
     $query_check_user = "SELECT * FROM users WHERE username='$username' AND first_name = '$first_name' AND last_name = '$last_name' AND date_of_birth = '$date_of_birth' ";
     $run_check_user = mysqli_query($conn,$query_check_user);

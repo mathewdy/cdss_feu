@@ -34,6 +34,7 @@ $_SESSION['username'] . '<br>';
   <link rel="stylesheet" href="../src/css/vertical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="../src/images/favicon.png" />
+  <link rel="stylesheet" src="//cdn.datatables.net/2.0.5/css/dataTables.dataTables.min.css">
 </head>
 
 <body>
@@ -242,8 +243,61 @@ $_SESSION['username'] . '<br>';
     <script src="../src/js/dashboard.js"></script>
     <script src="../src/js/Chart.roundedBarCharts.js"></script>
     <!-- End custom js for this page-->
-</body>
 
+
+  <table class="table">
+    <thead>
+      <tr>
+        <td>Patient Id</td>
+        <td>First Name</td>
+        <td>Middle Name</td>
+        <td>Last Name</td>
+        <td>Date of Birth</td>
+        <td>Options</td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+    <?php
+
+      $query_patients = "
+      SELECT infants.id AS infant_id ,infants.patient_id AS patient_id ,infants.first_name AS patient_first_name ,infants.middle_name AS patient_middle_name,infants.last_name AS patient_last_name ,infants.suffix AS patient_suffix,infants.date_of_birth AS patient_date_of_birth,infants.gender AS patient_gender,infants.marital_status AS patient_marital_status,infants.image AS patient_image ,infants.id_mother_parent AS patient_id_mother_parent,infants.id_father_parent AS patient_id_father_parent,mothers.id AS mother_id,mothers.account_id AS mother_account_id,mothers.patient_id AS mother_patient_id,mothers.first_name AS mother_first_name,mothers.middle_name AS mother_middle_name,mothers.last_name AS mother_last_name ,mothers.date_of_birth AS mother_date_of_birth,mothers.address AS mother_address,mothers.image AS mother_image ,fathers.id AS father_id,fathers.account_id AS father_account_id ,fathers.patient_id AS father_patient_id ,fathers.first_name AS father_first_name,fathers.middle_name AS father_middle_name,fathers.last_name AS father_last_name,fathers.date_of_birth AS father_date_of_birth,fathers.address AS father_address,fathers.image AS father_image
+      FROM infants
+      LEFT JOIN mothers
+      ON infants.patient_id = mothers.patient_id
+      LEFT JOIN fathers
+      ON infants.patient_id = fathers.patient_id";
+      $run_query_patients = mysqli_query($conn,$query_patients);
+      if(mysqli_num_rows($run_query_patients) > 0){
+        foreach($run_query_patients as $row_patients){
+          ?>
+
+            <tr>
+              <td><?php echo $row_patients['patient_id']?></td>
+              <td><?php echo $row_patients['first_name']?></td>
+              <td><?php echo $row_patients['middle_name']?></td>
+              <td><?php echo $row_patients['last_name']?></td>
+              <td><?php echo date("Y-M-d",strtotime($row_patients['date_of_birth']))?></td>
+              <td><a href="">Delete</a></td>
+              <td><a href="">Edit</a></td>
+            </tr>
+          <?php
+        }
+      }
+    ?>
+    </tbody>
+  </table>
+
+<script src="//cdn.datatables.net/2.0.5/js/dataTables.min.js"> 
+<script src="https://code.jquery.com/jquery-3.7.1.js" ></script>
+<script>
+  $(document).ready(function(){
+    $('.table').DataTable();
+  });
+</script>
+
+</script>
+</body>
 </html>
 
 
