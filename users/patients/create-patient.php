@@ -2,7 +2,7 @@
 ob_start();
 session_start();
 include('../../connection/connection.php');
-echo $_SESSION['account_id'] ;
+$_SESSION['account_id'] ;
 //error_reporting(E_ERROR | E_PARSE);
 
 ?>
