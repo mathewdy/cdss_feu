@@ -89,7 +89,7 @@ echo $_SESSION['account_id'] ;
         <h2>Address</h2>
 
         <label for="">Address:</label>
-        <input type="text" name="address_mother">
+        <input type="text" name="address_mother" id="address1">
 
         <br>
 
@@ -97,7 +97,7 @@ echo $_SESSION['account_id'] ;
         <input type="file" name="image_mother" multiple="">
         <br>
 
-        <input type="checkbox" name="" id="">
+        <input type="checkbox" name="" id="check_address">
         <label for="">Same address for father</label>
 
 
@@ -124,7 +124,7 @@ echo $_SESSION['account_id'] ;
         <h2>Address</h2>
 
         <label for="">Address:</label>
-        <input type="text" name="address_father">
+        <input type="text" name="address_father" id="address2">
         <br>
         
         <label for="">Image:</label>
@@ -143,6 +143,19 @@ echo $_SESSION['account_id'] ;
 
 
     <script src="https://code.jquery.com/jquery-3.7.1.js" ></script>
+
+    <script>
+        $(document).ready(function(){
+            $('#check_address').click(function() {
+                var check_status = this.checked;
+                if (check_status == true){
+                    document.getElementById('address2').value = document.getElementById ('address1').value;
+                }else{
+                    document.getElementById('address2').value = "";
+                }
+            })
+        });
+    </script>
 
     <script>
         $(document).ready(function () {
