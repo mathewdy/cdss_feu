@@ -284,13 +284,31 @@ if(isset($_POST['create_patient'])){
         }
     }
 
-    // foreach($patient_id as $key => $value){
-    //     $data_patient_id = $patient_id [$key];
-        
-    // }
-   
+     foreach($patient_id as $key => $value){
+        $data_patient_id = $patient_id [$key];
+        $query_validation_patient_id = "SELECT * FROM patients WHERE patient_id = '$data_patient_id'";
+        $run_query_validation_patient_id = mysqli_query($conn,$query_validation_patient_id);
 
-    
+        if(mysqli_num_rows($run_query_validation_patient_id) > 0){
+            echo "patiend_id already added";
+        }else{
+            $query_insert_patient_id = "INSERT INTO patients (patient_id) VALUES ('$data_patient_id') ";
+            $result_insert_patient_id = mysqli_query($conn,$query_insert_patient_id);
+            echo "patient_id added";
+        }
+    }
+   
+    $first_name_father = $_POST['first_name_father'];
+    $middle_name_father = $_POST['middle_name_father'];
+    $last_name_father = $_POST['last_name_father'];
+    $date_of_birth_father = $_POST['date_of_birth_father'];
+    $address_father = $_POST['address_father'];
+
+    $image_father = $_FILES['image_father']['name'];
+    $allowed_extension = array('gif','png','jpg','jpeg', 'PNG', 'GIF', 'JPG', 'JPEG');
+    $filename = $_FILES['image_father']['name'];
+
+    $query_check_father = "SELECT * FROM fathers WHERE first_name = '$first_name_father' AND middle_name ='$middle_name_father' AND last_name = '$last_name_father' AND date_of_birth = '$date_of_birth_father' AND address = '$address_father' ";
 }
 
 ob_end_flush();
