@@ -132,7 +132,7 @@ if(isset($_POST['create_account'])){
     $middle_name = $_POST['middle_name'];
     $last_name = $_POST['last_name'];
     $role = $_POST['role'];
-    $date_of_birth = $_POST['date_of_birth'];
+    $date_of_birth = date('Y-m-d',strtotime($_POST['date_of_birth']));
     $house_number = $_POST['house_number'];
     $street = $_POST['street'];
     $subdivision = $_POST['subdivision'];
@@ -170,14 +170,14 @@ if(isset($_POST['create_account'])){
     }
 
 
-    $query_check_user = "SELECT * FROM users WHERE username='$username' AND first_name = '$first_name' AND last_name = '$last_name' AND birthday = '$date_of_birth' ";
+    $query_check_user = "SELECT * FROM users WHERE username='$username' AND first_name = '$first_name' AND last_name = '$last_name' AND date_of_birth = '$date_of_birth' ";
     $run_check_user = mysqli_query($conn,$query_check_user);
     
     if(mysqli_num_rows($run_check_user) > 0){
         echo "<script>alert('User Already Added')</script>";
         exit();
     }else{
-        $query_register = "INSERT INTO users (account_id,username,password,first_name,middle_name,last_name,role,birthday,house_number,street,subdivision,brgy,city,region,zipcode,image,date_created,date_updated) VALUES ('$account_id', '$username','$new_password','$first_name','$middle_name','$last_name','$role','$date_of_birth','$house_number','$street','$subdivision','$brgy','$city','$region','$zip_code','$user_image','$date','$date')";
+        $query_register = "INSERT INTO users (account_id,username,password,first_name,middle_name,last_name,role,date_of_birth,house_number,street,subdivision,brgy,city,region,zipcode,image,date_created,date_updated) VALUES ('$account_id', '$username','$new_password','$first_name','$middle_name','$last_name','$role','$date_of_birth','$house_number','$street','$subdivision','$brgy','$city','$region','$zip_code','$user_image','$date','$date')";
         $run_sql = mysqli_query($conn,$query_register);
         //subject change
         echo "user_added" ; 

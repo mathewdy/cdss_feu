@@ -5,3 +5,18 @@ then kung existing na yung parent dun sa system dapat include na lang doon sa fa
 or dapat mauna yung parent sa registration bago yung patient, then gagamit tayo ng dynamic
 add multiple form using jquery
 then sa codes natin kapag may nilagay tayong comment na "//subject to change" mag brainstorming tayo dito
+
+
+
+
+Patients Data:
+
+NAME:Martin Policarpio
+AGE: 1
+BIRTHDATE: February 27, 2023
+PATIENT’S ID: 12222
+GENDER: Male
+MARITAL STATUS: Single
+ADDRESS: 123A Morayta, Manila
+ETHNICITY: Filipino
+LANGUAGES: English and Filipino

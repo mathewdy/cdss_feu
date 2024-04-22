@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2024 at 05:54 PM
+-- Generation Time: Apr 22, 2024 at 05:30 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -67,11 +67,11 @@ CREATE TABLE `eleventh_month` (
 
 CREATE TABLE `fathers` (
   `id` int(11) NOT NULL,
-  `id_infant` int(11) NOT NULL,
+  `patient_id` int(50) NOT NULL,
   `first_name` varchar(150) NOT NULL,
   `middle_name` varchar(150) NOT NULL,
   `last_name` varchar(150) NOT NULL,
-  `birthday` date NOT NULL,
+  `date_of_birth` date NOT NULL,
   `address` varchar(500) NOT NULL,
   `image` text NOT NULL,
   `date_created` date NOT NULL,
@@ -144,12 +144,12 @@ CREATE TABLE `fourth_month` (
 
 CREATE TABLE `infants` (
   `id` int(11) NOT NULL,
-  `patient_id` int(11) NOT NULL,
+  `patient_id` int(50) NOT NULL,
   `first_name` varchar(100) NOT NULL,
   `middle_name` varchar(100) NOT NULL,
   `last_name` varchar(100) NOT NULL,
   `suffix` varchar(100) NOT NULL,
-  `birthday` varchar(150) NOT NULL,
+  `date_of_birth` varchar(150) NOT NULL,
   `gender` int(11) NOT NULL,
   `marital_status` varchar(250) NOT NULL,
   `image` text NOT NULL,
@@ -158,16 +158,16 @@ CREATE TABLE `infants` (
   `id_remarks` int(11) NOT NULL,
   `date_created` date NOT NULL,
   `date_updated` date NOT NULL,
-  `modified_by` int(11) NOT NULL
+  `modified_by` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `infants`
 --
 
-INSERT INTO `infants` (`id`, `patient_id`, `first_name`, `middle_name`, `last_name`, `suffix`, `birthday`, `gender`, `marital_status`, `image`, `id_mother_parent`, `id_father_parent`, `id_remarks`, `date_created`, `date_updated`, `modified_by`) VALUES
-(44, 0, '', '', '', '', '', 0, '', 'WIN_20230901_10_53_24_Pro.jpg', 0, 0, 0, '0000-00-00', '0000-00-00', 0),
-(45, 0, '', '', '', '', '', 0, '', 'WIN_20240124_22_51_30_Pro.jpg', 0, 0, 0, '0000-00-00', '0000-00-00', 0);
+INSERT INTO `infants` (`id`, `patient_id`, `first_name`, `middle_name`, `last_name`, `suffix`, `date_of_birth`, `gender`, `marital_status`, `image`, `id_mother_parent`, `id_father_parent`, `id_remarks`, `date_created`, `date_updated`, `modified_by`) VALUES
+(128, 30, 'Hiroko', 'Xena', 'Kaden', 'Abel', '1989-06-23', 2, '1', '6c7be8fb-eca6-4406-8fe0-0920e4cef805.jpg', 20246870, 20246392, 0, '2024-04-22', '2024-04-22', '20228296'),
+(129, 45, 'Daphne', 'Ivy', 'Troy', 'Joan', '1977-05-19', 2, '1', '', 20244061, 20241823, 0, '2024-04-22', '2024-04-22', '20228296');
 
 -- --------------------------------------------------------
 
@@ -177,11 +177,11 @@ INSERT INTO `infants` (`id`, `patient_id`, `first_name`, `middle_name`, `last_na
 
 CREATE TABLE `mothers` (
   `id` int(11) NOT NULL,
-  `id_infant` int(11) NOT NULL,
+  `patient_id` int(11) NOT NULL,
   `first_name` varchar(100) NOT NULL,
   `middle_name` varchar(100) NOT NULL,
   `last_name` varchar(100) NOT NULL,
-  `birthday` date NOT NULL,
+  `date_of_birth` date NOT NULL,
   `address` varchar(500) NOT NULL,
   `image` text NOT NULL,
   `date_created` date NOT NULL,
@@ -337,7 +337,7 @@ CREATE TABLE `users` (
   `middle_name` varchar(150) NOT NULL,
   `last_name` varchar(150) NOT NULL,
   `role` int(11) NOT NULL,
-  `birthday` date NOT NULL,
+  `date_of_birth` date NOT NULL,
   `house_number` varchar(150) NOT NULL,
   `street` varchar(150) NOT NULL,
   `subdivision` varchar(150) NOT NULL,
@@ -354,7 +354,7 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `account_id`, `username`, `password`, `first_name`, `middle_name`, `last_name`, `role`, `birthday`, `house_number`, `street`, `subdivision`, `brgy`, `city`, `region`, `zipcode`, `image`, `date_created`, `date_updated`) VALUES
+INSERT INTO `users` (`id`, `account_id`, `username`, `password`, `first_name`, `middle_name`, `last_name`, `role`, `date_of_birth`, `house_number`, `street`, `subdivision`, `brgy`, `city`, `region`, `zipcode`, `image`, `date_created`, `date_updated`) VALUES
 (7, 20228296, 'mathew', '$2y$10$pQblCxnBM55s9szJ0kkngO6waeShIbZ3pBuE8ptNI6z5RQz/i4.Qy', 'mathew', 'francisco', 'dalisay', 1, '2024-04-20', 'nepogy', 'bodyl', 'vymyqyfi', 'wylobo', 'tyzaluvog', 'qavogag', 0, 0x3433343733363235305f3935383739393932393032303435315f343834343030303236373534383831373435345f6e2e6a7067, '2024-04-20', '2024-04-20'),
 (8, 20227797, 'mathew123', '$2y$10$.LvZrXLT6PGEvvVmKm13pOwflKazsI3EQpMGmsVC5iBHwOQBgctSa', 'mathew', 'francisco', 'dalisay', 1, '2024-04-20', 'nepogy', 'bodyl', 'vymyqyfi', 'wylobo', 'tyzaluvog', 'qavogag', 0, 0x706963747572652e6a7067, '2024-04-20', '2024-04-20'),
 (9, 20222980, 'mathew1234', '$2y$10$QABh9UF/O9D14K2/YMymLu1PQRMXzRC3TLdGQFBn1s.y/MU8.SA6.', 'mathew', 'francisco', 'dalisay', 2, '2024-04-20', 'nepogy', 'bodyl', 'vymyqyfi', 'wylobo', 'tyzaluvog', 'qavogag', 0, 0x706963747572652e6a7067, '2024-04-20', '2024-04-20');
@@ -384,7 +384,7 @@ ALTER TABLE `eleventh_month`
 --
 ALTER TABLE `fathers`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_infant` (`id_infant`,`modified_by`),
+  ADD KEY `id_infant` (`patient_id`,`modified_by`),
   ADD KEY `modified_by` (`modified_by`);
 
 --
@@ -425,7 +425,7 @@ ALTER TABLE `infants`
 --
 ALTER TABLE `mothers`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_infant` (`id_infant`,`modified_by`),
+  ADD KEY `id_infant` (`patient_id`,`modified_by`),
   ADD KEY `modified_by` (`modified_by`);
 
 --
@@ -534,13 +534,13 @@ ALTER TABLE `fourth_month`
 -- AUTO_INCREMENT for table `infants`
 --
 ALTER TABLE `infants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
 
 --
 -- AUTO_INCREMENT for table `mothers`
 --
 ALTER TABLE `mothers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `ninth_month`
@@ -609,13 +609,6 @@ ALTER TABLE `eleventh_month`
   ADD CONSTRAINT `eleventh_month_ibfk_2` FOREIGN KEY (`modified_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `fathers`
---
-ALTER TABLE `fathers`
-  ADD CONSTRAINT `fathers_ibfk_1` FOREIGN KEY (`modified_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fathers_ibfk_2` FOREIGN KEY (`id_infant`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `fifth_month`
 --
 ALTER TABLE `fifth_month`
@@ -635,13 +628,6 @@ ALTER TABLE `first_month`
 ALTER TABLE `fourth_month`
   ADD CONSTRAINT `fourth_month_ibfk_1` FOREIGN KEY (`id_infant`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fourth_month_ibfk_2` FOREIGN KEY (`modified_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `mothers`
---
-ALTER TABLE `mothers`
-  ADD CONSTRAINT `mothers_ibfk_1` FOREIGN KEY (`id_infant`) REFERENCES `infants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `mothers_ibfk_2` FOREIGN KEY (`modified_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `ninth_month`
