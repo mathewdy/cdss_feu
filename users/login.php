@@ -10,49 +10,73 @@ include('../connection/connection.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>Document</title>
+    <link rel="stylesheet" href="../src/vendors/feather/feather.css">
+    <link rel="stylesheet" href="../src/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="../src/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../src/css/vertical-layout-light/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="../src/images/favicon.png" />
 </head>
+
 <body>
-    <nav class="navbar bg-light">
+  <div class="container-scroller">
+  <nav class="navbar bg-light">
         <div class="container">
             <a class="navbar-brand m-auto" href="#">
             <img src="../src/img/FEU_Tamaraws_official_logo.png" alt="Feu_Tamaraw" height="50">
             </a>
         </div>
     </nav>
-    <main class="py-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-7 col-md-10 col-sm-12">
-                    <div class="card p-4">
-                        <h1 class="text-center">Log In</h1>
-                        <form action="" method="POST">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-9 my-4">
-                                    <div class="form-floating mb-4">
-                                        <input type="text" class="form-control" id="floatingInput" name="username" placeholder="Username">
-                                        <label for="floatingInput">Username</label>
-                                        </div>
-                                        <div class="form-floating mb-4">
-                                        <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
-                                        <label for="floatingPassword">Password</label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-9 text-center mb-5">
-                                    <input type="submit" class="btn btn-outline-warning w-100 rounded-pill" name="login" value="Log In">
-                                    <a href="registration.php">Sign Up</a>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+      <div class="content-wrapper d-flex align-items-center auth px-0">
+        <div class="row w-100 mx-0">
+          <div class="col-lg-4 mx-auto">
+            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+              <h4>Hello! let's get started</h4>
+              <h6 class="font-weight-light">Sign in to continue.</h6>
+              <form class="pt-3" action="" method="POST" >
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" name="username" placeholder="Username">
                 </div>
+                <div class="form-group">
+                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" name="password" placeholder="Password">
+                </div>
+                <div class="mt-3">
+                  <input type="submit" class="btn btn-block btn-inverse-success btn-lg font-weight-medium auth-form-btn" name="login" value="Sign In">
+                  
+                </div>
+                <div class="my-2 d-flex justify-content-center align-items-center">
+                  <a href="#" class="auth-link text-black">Forgot password?</a>
+                </div>
+                <div class="text-center mt-4 font-weight-light">
+                  Don't have an account? <a href="register.html" class="text-primary">Create</a>
+                </div>
+              </form>
             </div>
+          </div>
         </div>
-    </main>
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+      </div>
+      <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="../src/vendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="../src/js/off-canvas.js"></script>
+  <script src="../src/js/hoverable-collapse.js"></script>
+  <script src="../src/js/template.js"></script>
+  <script src="../src/js/settings.js"></script>
+  <script src="../src/js/todolist.js"></script>
+  <!-- endinject -->
 </body>
 </html>
 
