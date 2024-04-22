@@ -27,9 +27,6 @@ echo $_SESSION['account_id'] ;
         <h2>Infant</h2>
 
         <div class="main-form">
-        <label for="">Patient ID:</label>
-        <input type="number" name="patient_id[]">
-        <br>
         <label for="">First Name:</label>
         <input type="text" name="first_name_infant[]">
         <br>
@@ -158,8 +155,6 @@ echo $_SESSION['account_id'] ;
 
             $(document).on('click', '.add-more-form', function (){
                 $('.paste-new-forms').append('<div class="main-form">\
-                    <label for="">Patient ID:</label>\
-                    <input type="number" name="patient_id[]">\
                     <br>\
                     <label for="">First Name:</label>\
                     <input type="text" name="first_name_infant[]">\
@@ -212,7 +207,6 @@ if(isset($_POST['create_patient'])){
     date_default_timezone_set("Asia/Manila");
     $date = date('y-m-d');
 
-    $patient_id = $_POST['patient_id'];
     $first_name_infant = $_POST['first_name_infant'];
     $middle_name_infant = $_POST['middle_name_infant'];
     $last_name_infant = $_POST['last_name_infant'];
@@ -230,7 +224,7 @@ if(isset($_POST['create_patient'])){
 
 
     foreach($image_infant as $key => $value){
-        $data_patient_id = $patient_id [$key];
+        $data_patient_id = rand(500,67890);
         $data_first_name_infant = $first_name_infant[$key];
         $data_middle_name_infant = $middle_name_infant[$key];
         $data_last_name_infant = $last_name_infant[$key];
@@ -250,9 +244,9 @@ if(isset($_POST['create_patient'])){
         if(mysqli_num_rows($run_query_check_infant) > 0){
              echo "infant already added";
         }else{
-            $query_infant = "INSERT INTO infants (patient_id,first_name,middle_name,last_name,suffix,date_of_birth,gender,marital_status,image,id_mother_parent,id_father_parent,id_remarks,date_created,date_updated,modified_by) VALUES ('$data_patient_id','$data_first_name_infant','$data_middle_name_infant','$data_last_name_infant','$data_suffix_infant','$data_date_of_birth_infant','$data_gender_infant','$data_marital_status_infant','".$value."', '$account_id_mother','$account_id_father','0','$date','$date', '$account_id_user')";
+            $query_infant = "INSERT INTO infants (patient_id,first_name,middle_name,last_name,suffix,date_of_birth,gender,marital_status,image,id_mother_parent,id_father_parent,id_remarks,date_created,date_updated,modified_by) VALUES ('$data_patient_id' + 3,'$data_first_name_infant','$data_middle_name_infant','$data_last_name_infant','$data_suffix_infant','$data_date_of_birth_infant','$data_gender_infant','$data_marital_status_infant','".$value."', '$account_id_mother','$account_id_father','0','$date','$date', '$account_id_user')";
             $result_infant = mysqli_query ($conn,$query_infant);
-
+            // subject for modification
             echo "added infant";
 
             
@@ -273,30 +267,30 @@ if(isset($_POST['create_patient'])){
     $query_check_mother = "SELECT * FROM mothers WHERE first_name = '$first_name_mother' AND middle_name ='$middle_name_mother' AND last_name = '$last_name_mother' AND date_of_birth = '$date_of_birth_mother' AND address = '$address_mother' ";
     $result_check_mother = mysqli_query($conn,$query_check_mother);
     if(mysqli_num_rows($result_check_mother) > 0){
+        // subject for modification
         echo "error inserting mother, already added";
     }else{
-        $query_mother = "INSERT INTO mothers (first_name,middle_name,last_name,date_of_birth,address,image,date_created,date_updated,modified_by) VALUES ('$first_name_mother', '$middle_name_mother','$last_name_mother', '$date_of_birth_mother','$address_mother','$image_mother','$date', '$date', '$account_id_user' )";
-        $result_mother = mysqli_query($conn,$query_mother);
-    
-        if($result_mother) {
-            move_uploaded_file($_FILES["image_mother"]["tmp_name"], "mother_images/".$_FILES["image_mother"]["name"]);
-            echo "added mother";
-        }
+
+        $query_patient_id_mother = "SELECT * FROM infants WHERE id_mother_parent = '$account_id_mother'";
+        $run_patient_id_mother = mysqli_query($conn,$query_patient_id_mother);
+
+        if(mysqli_num_rows($run_patient_id_mother) > 0){
+            foreach($run_patient_id_mother as $row_patient_id_mother){
+                $row_patient_id_mother['patient_id'];
+
+                $query_mother = "INSERT INTO mothers (account_id,patient_id,first_name,middle_name,last_name,date_of_birth,address,image,date_created,date_updated,modified_by) VALUES ('$account_id_mother','".$row_patient_id_mother['patient_id']."','$first_name_mother', '$middle_name_mother','$last_name_mother', '$date_of_birth_mother','$address_mother','$image_mother','$date', '$date', '$account_id_user' )";
+                $result_mother = mysqli_query($conn,$query_mother);
+
+                if($result_mother) {
+                    move_uploaded_file($_FILES["image_mother"]["tmp_name"], "mother_images/".$_FILES["image_mother"]["name"]);
+                    // subject for modification
+                    echo "added mother";
+                }
+            }
+        } 
+        
     }
 
-     foreach($patient_id as $key => $value){
-        $data_patient_id = $patient_id [$key];
-        $query_validation_patient_id = "SELECT * FROM patients WHERE patient_id = '$data_patient_id'";
-        $run_query_validation_patient_id = mysqli_query($conn,$query_validation_patient_id);
-
-        if(mysqli_num_rows($run_query_validation_patient_id) > 0){
-            echo "patiend_id already added";
-        }else{
-            $query_insert_patient_id = "INSERT INTO patients (patient_id) VALUES ('$data_patient_id') ";
-            $result_insert_patient_id = mysqli_query($conn,$query_insert_patient_id);
-            echo "patient_id added";
-        }
-    }
    
     $first_name_father = $_POST['first_name_father'];
     $middle_name_father = $_POST['middle_name_father'];
@@ -312,37 +306,33 @@ if(isset($_POST['create_patient'])){
     $result_check_father = mysqli_query($conn,$query_check_father);
 
     if(mysqli_num_rows($result_check_father) > 0){
+        // subject for modification
         echo "father already added";
     }else{
-        $query_father = "INSERT INTO father (first_name,middle_name,last_name,date_of_birth,address,image,date_created,date_updated,modified_by) VALUES ('$first_name_father', '$middle_name_father','$last_name_father', '$date_of_birth_father','$address_father','$image_father','$date', '$date', '$account_id_user' )";
-        $result_father = mysqli_query($conn,$query_father);
 
-        if($result_father) {
-            echo "added father"; 
-        }else{
-            echo "not added father";
-        }
-    }
+        $query_patient_id_father = "SELECT * FROM infants WHERE id_father_parent = '$account_id_father'";
+        $run_patient_id_father = mysqli_query($conn,$query_patient_id_father);
 
+        if(mysqli_num_rows($run_patient_id_father) > 0){
+            foreach($run_patient_id_father as $row_patient_id_father){
+                $row_patient_id_father['patient_id'];
 
-    foreach($patient_id as $key => $value){
-        $data_patient_id = $patient_id[$key];
+                $query_father = "INSERT INTO fathers (account_id,first_name,middle_name,last_name,date_of_birth,address,image,date_created,date_updated,modified_by) VALUES ('$account_id_father','$first_name_father', '$middle_name_father','$last_name_father', '$date_of_birth_father','$address_father','$image_father','$date', '$date', '$account_id_user' )";
+                $result_father = mysqli_query($conn,$query_father);
 
-        $query_validation_patient_id = "SELECT * FROM patients WHERE patient_id = '$data_patient_id' ";
-        $result_validation_patient_id = mysqli_query($conn,$query_validation_patient_id);
-
-        if($result_validation_patient_id (mysqli_num_rows) > 0){
-            echo "patient id already added"
-        }else{
-            $query_insert_patient_id = "INSERT INTO patients (patient_id) VALUES ('$data_patient_id')";
-            $result_insert_patient_id = mysqli_query($conn,$query_insert_patient_id);
-            if($result_insert_patient_id){
-                echo "patient_id added for father";
-            }else{
-                echo "patient_id not added for father";
+                if($result_father) {
+                    // subject for modification
+                    move_uploaded_file($_FILES["image_father"]["tmp_name"], "father_images/".$_FILES["image_father"]["name"]);
+                    echo "added father"; 
+                }else{
+                    // subject for modification
+                    echo "not added father";
+                }
             }
         }
+        
     }
+
 
 }
 
