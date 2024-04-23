@@ -44,11 +44,30 @@ $_SESSION['account_id'];
                         <input type="text" name="patient_middle_name" value="<?php echo $row_patients['patient_middle_name']?>">
                         <label for="">Last Name:</label>
                         <input type="text" name="patient_last_name" value="<?php echo $row_patients['patient_last_name']?>">
+                        <label for="">Suffix:</label>
+                        <input type="text" name="patient_suffix" value="<?php echo $row_patients['patient_suffix']?>">
+                        <label for="">Date of Birth:</label>
+                        <input type="text" name="" readonly value="<?php echo $row_patients['patient_date_of_birth']?>">
+                        <input type="date" name="patient_date_of_birth" id="">
+                        <label for="">Gender: <?php if($row_patients['patient_gender'] = '1'){
+                            echo "Male";
+                            }else{
+                                echo "Female";
+                            }
+                            ?></label>
+                        <select name="patient_gender" id="">
+                            <option value="">-Select-</option>
+                            <option value="1">Male</option>
+                            <option value="2">Female</option>
+                        </select>
+
                         <img src="<?php echo "patients/infant_images/". $row_patients['patient_image']?>" alt="patient image" style="height: 150px; width: 150px;">
-                        <input type="file" name="update_patient_image">
+                        <input type="file" name="patient_image_new">
+                        <input type="hidden" name="patient_old_image" value="<?php echo $row_patients['patient_image']?>">
+                        <input type="hidden" name="patient_id" value="<?php echo $row_patients['patient_id']?>">
 
 
-                        <h2>Parent's Profile</h2>
+                        <h2>Mothers's Profile</h2>
                         <!---Modal dapat to-- for mother---->
 
                         <label for="">First Name:</label>
@@ -63,8 +82,11 @@ $_SESSION['account_id'];
                         <input type="text" name="mother_date_of_birth" value="<?php echo $row_patients['mother_date_of_birth']?>">
                         <label for="">Image:</label>
                         <img src="<?php echo "patients/mother_images/". $row_patients['mother_image']?>" alt="patient image" style="height: 150px; width: 150px;" alt="mother_image">
+                        <input type="file" name="mother_image_new">
+                        <input type="hidden" name="mother_image_old" value="<?php echo $row_patients['mother_image']?>">
 
-                        <h2>Parent's Profile</h2>
+
+                        <h2>Fathers's Profile</h2>
                         <!---Modal dapat to-- for father---->
 
                         <label for="">First Name:</label>
@@ -79,7 +101,10 @@ $_SESSION['account_id'];
                         <input type="text" name="father_date_of_birth" value="<?php echo $row_patients['father_date_of_birth']?>">
                         <label for="">Image:</label>
                         <img src="<?php echo "patients/father_images/". $row_patients['father_image']?>" alt="patient image" style="height: 150px; width: 150px;" alt="father_image">
-
+                        <input type="file" name="father_image_new">
+                        <input type="hidden" name="father_image_old" value="<?php echo $row_patients['father_image']?>">
+                        
+                        <input type="submit" name="update_data">
 
                         </form>
 
@@ -97,18 +122,44 @@ $_SESSION['account_id'];
 
 <?php
 
-if(isset($_POST['create_patient_data'])){
-    $patient_id = $_GET['patient_id'];
-    $patient_data = $_POST['patient_data'];
+if(isset($_POST['update_data'])){
+    $patient_id = $_POST['patient_id'];
+    $patient_first_name = $_POST['patient_first_name'];
+    $patient_middle_name = $_POST['patient_middle_name'];
+    $patient_last_name = $_POST['patient_last_name'];
+    $patient_suffix = $_POST['patient_suffix'];
+    $patient_date_of_birth = $_POST['patient_date_of_birth'];
+    $patient_gender = $_POST['patient_gender'];
 
-    $query_sample_insert = "INSERT INTO first_month (patient_id,milestone_development) VALUES ('$patient_id', '$patient_data') ";
-    $run_sample_insert = mysqli_query($conn,$query_sample_insert);
-    if($run_sample_insert){
-        echo "added";
+    $patient_new_image = $_FILES['patient_image_new']['name'];
+    $patient_old_image = $_POST['patient_old_image'];
+
+    if($patient_new_image != ''){
+        $update_file_name_patient = $_FILES['patient_image_new']['name'];
     }else{
-        echo "error";
+        $update_file_name_patient = $patient_old_image;
     }
-    
+
+    if(file_exists("patients/infant_images/" . $_FILES['patient_image_new']['name'])){
+        $filename = $_FILES['patient_image_new']['name'];
+        echo "image already exists";
+    }else{
+        $query_update_patients_profile = "UPDATE infants SET patient_id = '$patient_id', first_name = '$patient_first_name', middle_name = '$patient_middle_name', last_name = '$patient_last_name', suffix = '$patient_suffix' , date_of_birth = '$patient_date_of_birth', gender = '$patient_gender', image = '$update_file_name_patient' WHERE patient_id = '$patient_id'";
+        $run_update_patients_profile = mysqli_query($conn,$query_update_patients_profile);
+
+        if($run_update_patients_profile){
+            if($_FILES['patient_image_new']['name'] !=''){
+                move_uploaded_file($_FILES['patient_image_new']['tmp_name'], "patients/infant_images/".$_FILES['patient_image_new']['name']);
+                unlink("patients/infant_images/".$patient_old_image);
+                echo "updated data and image";
+            }else{
+                echo "Error updating image";
+            }
+        }else{
+            echo "Error updating data";
+        }
+    }
+
 }
 
 

@@ -1,8 +1,3 @@
-1.
-ma create muna yung view patients
-
-- dapat ma view yung CDSS nya na
-- dapat makapag create ng CDSS 
 
 
 2. ma tapos yung edit-patients
@@ -12,3 +7,7 @@ ma create muna yung view patients
 -patient info 
 
 3. optimize code
+
+
+4. bukas na galawin yung registration
+5. sa edit-patient.php ayusin na lang yung mother at father na data

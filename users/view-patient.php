@@ -61,20 +61,29 @@ $_SESSION['account_id'];
                     <label for="">Suffix: </label>
                     <input type="text" name="patient_suffix" value="<?php echo $row_patient['patient_suffix']?>">
 
-                    <label for="">Suffix: </label>
-                    <input type="text" name="patient_suffix" value="<?php echo $row_patient['patient_suffix']?>">
-
-                    <label for="">Date of Birth: </label>
-                    <input type="text" name="patient_date_of_birth" value="<?php echo $row_patient['patient_date_of_birth']?>">
-
                     <label for="">Date of Birth: </label>
                     <input type="text" name="patient_date_of_birth" value="<?php echo $row_patient['patient_date_of_birth']?>">
 
                     <label for="">Gender: </label>
-                    <input type="text" name="patient_gender" value="<?php echo $row_patient['patient_gender']?>">
+                    <input type="text" name="patient_gender" value="<?php if($row_patient['patient_gender'] = '1'){
+                        echo "Male";
+                    }else{
+                        echo "Female";
+                    }
+                        ?>">
 
                     <label for="">Marital Status: </label>
-                    <input type="text" name="patient_marital_status" value="<?php echo $row_patient['patient_marital_status']?>">
+                    <input type="text" name="patient_marital_status" value="<?php  if($row_patient['patient_marital_status'] = '1' ){
+                        echo "Single";
+                    }elseif($row_patient['patient_marital_status'] = '2'){
+                        echo "Married";
+                    }elseif($row_patient['patient_marital_status'] = '3'){
+                        echo "Divorced";
+                    }else{
+                        echo "Separated";
+                    }
+                    
+                    ?>">
 
                     <img src="<?php echo "patients/infant_images/". $row_patient['patient_image']?>" alt="patient image" style="height: 150px; width: 150px;">
 
