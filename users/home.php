@@ -45,6 +45,7 @@ if(mysqli_num_rows($q_run) > 0){
   <link rel="shortcut icon" href="../src/images/favicon.png" />
   <!-- <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css" /> -->
   <link rel="stylesheet" href="../src/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="../src/css/custom/swal-centered.css">
 </head>
 <style>
     .tr .td{
@@ -131,8 +132,9 @@ if(mysqli_num_rows($q_run) > 0){
                                 <td><?php echo $row_patients['patient_middle_name']?></td>
                                 <td><?php echo $row_patients['patient_last_name']?></td>
                                 <td><?php echo date("Y-M-d",strtotime($row_patients['patient_date_of_birth']))?></td>
-                                <td><a href="">Delete</a> 
+                                <td><a href="#" class="delete-link" data-item-id="<?php echo $row_patients['patient_id']; ?>">Delete</a> 
                                 <a href="edit-patient.php?patient_id=<?php echo $row_patients['patient_id']?>">Edit</a>
+
                                 <a href="view-patient.php?patient_id=<?php echo $row_patients['patient_id']?>">View</a>
                                 </td>
                                 </tr>
@@ -186,16 +188,9 @@ if(mysqli_num_rows($q_run) > 0){
     <!-- End custom js for this page-->
 <!-- <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script> -->
 <script src="../src/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-<script>
-    $(document).ready(function(){
-        $('#dataTable').DataTable();
-        $('.dataTable_length').remove();
-        $('<a class="btn btn-success mr-2 mb-4" href="patients/create-patient.php">Add Patient</a>')
-        .insertBefore('div.dataTables_length');
-    });
-</script>
-
-</script>
+<script src="../src/js/custom/dataTable-init.js"></script>
+<script src="../src/vendors/sweetalert/sweetalert.min.js"></script>
+<script src="../src/js/custom/swal-delete.js"></script>
 </body>
 </html>
 
