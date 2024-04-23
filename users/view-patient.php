@@ -45,6 +45,10 @@ $_SESSION['account_id'];
             foreach($run_query_patient as $row_patient){
                 ?>
 
+                    <label for="">Patient Id:</label>
+                    <label for=""><?php echo $row_patient['patient_id']?></label>
+                    
+
                     <label for="">First Name:</label>
                     <input type="text" name="patient_first_name" value="<?php echo $row_patient['patient_first_name']?>" readonly>
 
@@ -81,7 +85,8 @@ $_SESSION['account_id'];
                     <label for=""><?php echo $row_patient['mothers_contact_number']?></label>
 
                     <form action="" method="POST" enctype='multipart/form-data'>
-                        <textarea><?php if(empty($row_patient['remarks_assessments'])){
+                    <input type="hidden" name="patient_id" value="<?php echo $row_patient['patient_id']?>">
+                        <textarea name="patients_assessments"><?php if(empty($row_patient['remarks_assessments'])){
                                 ?>
                                     <table>
                                             <thead>
@@ -357,7 +362,21 @@ $_SESSION['account_id'];
                             }
                             ?>
                         </textarea>
-                        <input type="submit" name="create_cdss_patient" value="Save">
+                        <?php
+                        
+                        if(empty($row_patient['remarks_assessments'])){
+                            ?>
+                                <input type="submit" name="create_cdss_patient" value="Save">
+                            <?php
+                        }else{
+                            ?>
+                                <input type="submit" name="update_cdss_patient" value="Update">
+                            <?php
+                        }
+                        
+                        ?>
+
+                       
                     </form>
                 <?php
             }
@@ -384,4 +403,56 @@ $_SESSION['account_id'];
     
 </body>
 </html>
+
+
+<?php
+
+if(isset($_POST['create_cdss_patient'])){
+    date_default_timezone_set("Asia/Manila");
+    $date = date('y-m-d');
+
+    $account_id = $_SESSION['account_id'];
+    $patient_id = $_POST['patient_id'];
+    $patients_assessments = $_POST['patients_assessments'];
+
+    $query_insert_remarks = "INSERT INTO remarks (patient_id,assessments,date_created,date_updated,modified_by) VALUES ('$patient_id','$patients_assessments','$date', '$date','$account_id')";
+    $run_insert_remarks = mysqli_query($conn,$query_insert_remarks);
+
+    if($run_insert_remarks){
+        // subject to revise
+        echo "added";
+    }else{
+        echo "error";
+    }
+
+    
+
+}
+
+
+if(isset($_POST['update_cdss_patient'])){
+    date_default_timezone_set("Asia/Manila");
+    $date = date('y-m-d');
+
+    $account_id = $_SESSION['account_id'];
+    $patient_id = $_POST['patient_id'];
+    $patients_assessments = $_POST['patients_assessments'];
+
+    $query_update_remarks = "UPDATE remarks SET assessments = '$patients_assessments', date_created = '$date' , date_updated = '$date' , modified_by = '$account_id' WHERE patient_id = '$patient_id'";
+    $run_update_remarks = mysqli_query($conn,$query_update_remarks);
+
+    if($run_update_remarks){
+        // subject to revise
+        echo "updated";
+    }else{
+        echo "error";
+    }
+}
+
+
+
+ob_end_flush();
+
+
+?>
 
