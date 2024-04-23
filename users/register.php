@@ -20,29 +20,11 @@ include('../connection/connection.php');
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="../src/css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="../src/css/custom/swal-centered.css">
+
     <!-- endinject -->
     <link rel="shortcut icon" href="../src/images/favicon.png" />
 </head>
-<style>
-    /* Custom styling for the circular progress indicators */
-    .progress-indicator {
-      display: flex;
-      justify-content: space-between;
-      list-style: none;
-      padding: 0;
-    }
-    .progress-step {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background-color: #ddd;
-      border: 2px solid #333;
-    }
-    .progress-step.active {
-      background-color: #007bff; /* Change to your desired active color */
-      border-color: #007bff;
-    }
-  </style>
 <body>
   <div class="container-scroller">
   <nav class="navbar bg-light">
@@ -58,15 +40,8 @@ include('../connection/connection.php');
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
               <div class="col-md-12">
-                <!-- <ul class="progress-indicator">
-                    <li class="progress-step d-flex justify-content-center align-items-center active">1</li>
-                    <li class="progress-step d-flex justify-content-center align-items-center">2</li>
-                    <li class="progress-step d-flex justify-content-center align-items-center">3</li>
-                    <li class="progress-step d-flex justify-content-center align-items-center">4</li>
-                    <li class="progress-step d-flex justify-content-center align-items-center">5</li>
-                </ul> -->
                 </div>
-                    <form id="stepperForm" method="post" action="">
+                    <form id="stepperForm" method="post" action="" enctype="multipart/form-data">
                         <div id="step1" class="step">
                             <!-- <h2>Step 1: Details</h2> -->
                             <div class="form-group">
@@ -156,6 +131,8 @@ include('../connection/connection.php');
   <!-- Plugin js for this page -->
   <!-- End plugin js for this page -->
   <!-- inject:js -->
+<script src="../src/vendors/sweetalert/sweetalert.min.js"></script>
+
   <script src="../../js/off-canvas.js"></script>
   <script src="../../js/hoverable-collapse.js"></script>
   <script src="../../js/template.js"></script>
@@ -221,51 +198,63 @@ if(isset($_POST['create_account'])){
     $password = $_POST['password'];
     $new_password = password_hash($password,PASSWORD_DEFAULT);
 
+    if(empty($first_name) || empty($middle_name) || empty($last_name) || empty($role) || empty($date_of_birth) || empty($house_number) || empty($street) || empty($subdivision) || empty($brgy) || empty($city) || empty($region) || empty($zip_code)){
+        echo '<script type="text/javascript">
 
-    date_default_timezone_set("Asia/Manila");
-    $date = date('y-m-d');
-    
-    //image
-    $user_image = $_FILES['user_image']['name'];
-    $allowed_extension = array('gif','png','jpg','jpeg', 'PNG', 'GIF', 'JPG', 'JPEG');
-    $filename = $_FILES['user_image']['name'];
-    $file_extension = pathinfo($filename, PATHINFO_EXTENSION);
-
-    $account_id = "2024".rand('1','10') . substr(str_shuffle(str_repeat("0123456789", 5)), 0, 3) ;
-
-    if(!in_array($file_extension,$allowed_extension)){
-        echo "<script>alert('File not allowed'); </script>";
-        echo "<script>window.location.href='register.php'</script>";
-    }else{
+        $(document).ready(function(){
+            sweetAlert("Oops...", "Something went wrong!", "error");
+        });
         
-        if(file_exists("images/" .$_FILES['user_image']['name'])){
-            echo "<script>alert('Select other picture') </script>";
-            echo "<script>window.location.href='register.php'</script>";
-            $filename = $_FILES['user_image']['name'];
-        }
-    }
-
-
-    $query_check_user = "SELECT * FROM users WHERE username='$username' AND first_name = '$first_name' AND last_name = '$last_name' AND date_of_birth = '$date_of_birth' ";
-    $run_check_user = mysqli_query($conn,$query_check_user);
-    
-    if(mysqli_num_rows($run_check_user) > 0){
-        echo "<script>alert('User Already Added')</script>";
-        exit();
+        </script>
+        ';
     }else{
-        $query_register = "INSERT INTO users (account_id,username,password,first_name,middle_name,last_name,role,date_of_birth,house_number,street,subdivision,brgy,city,region,zipcode,image,date_created,date_updated) VALUES ('$account_id', '$username','$new_password','$first_name','$middle_name','$last_name','$role','$date_of_birth','$house_number','$street','$subdivision','$brgy','$city','$region','$zip_code','$user_image','$date','$date')";
-        $run_sql = mysqli_query($conn,$query_register);
-        //subject change
-        echo "user_added" ; 
 
-
-        if($run_sql){
-            move_uploaded_file($_FILES["user_image"]["tmp_name"], "images/".$_FILES["user_image"]["name"]);
-            echo "<script>window.location.href='login.php'</script>";
+        date_default_timezone_set("Asia/Manila");
+        $date = date('y-m-d');
+        
+        //image
+        $user_image = $_FILES['user_image']['name'];
+        $allowed_extension = array('gif','png','jpg','jpeg', 'PNG', 'GIF', 'JPG', 'JPEG');
+        $filename = $_FILES['user_image']['name'];
+        $file_extension = pathinfo($filename, PATHINFO_EXTENSION);
+    
+        $account_id = "2024".rand('1','10') . substr(str_shuffle(str_repeat("0123456789", 5)), 0, 3) ;
+    
+        if(!in_array($file_extension,$allowed_extension)){
+            echo "<script>alert('File not allowed'); </script>";
+            echo "<script>window.location.href='register.php'</script>";
         }else{
-            echo "error" . $conn->error;
+            
+            if(file_exists("images/" .$_FILES['user_image']['name'])){
+                echo "<script>alert('Select other picture') </script>";
+                echo "<script>window.location.href='register.php'</script>";
+                $filename = $_FILES['user_image']['name'];
+            }
+        }
+    
+    
+        $query_check_user = "SELECT * FROM users WHERE username='$username' AND first_name = '$first_name' AND last_name = '$last_name' AND date_of_birth = '$date_of_birth' ";
+        $run_check_user = mysqli_query($conn,$query_check_user);
+        
+        if(mysqli_num_rows($run_check_user) > 0){
+            echo "<script>alert('User Already Added')</script>";
+            exit();
+        }else{
+            $query_register = "INSERT INTO users (account_id,username,password,first_name,middle_name,last_name,role,date_of_birth,house_number,street,subdivision,brgy,city,region,zipcode,image,date_created,date_updated) VALUES ('$account_id', '$username','$new_password','$first_name','$middle_name','$last_name','$role','$date_of_birth','$house_number','$street','$subdivision','$brgy','$city','$region','$zip_code','$user_image','$date','$date')";
+            $run_sql = mysqli_query($conn,$query_register);
+            //subject change
+            echo "user_added" ; 
+    
+    
+            if($run_sql){
+                move_uploaded_file($_FILES["user_image"]["tmp_name"], "images/".$_FILES["user_image"]["name"]);
+                echo "<script>window.location.href='login.php'</script>";
+            }else{
+                echo "error" . $conn->error;
+            }
         }
     }
+    
 }
 
 

@@ -18,20 +18,20 @@ include('../connection/connection.php');
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="../src/css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="../src/css/custom/swal-centered.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="../src/images/favicon.png" />
 </head>
-
 <body>
   <div class="container-scroller">
-  <nav class="navbar bg-light">
+  <nav class="navbar bg-success">
         <div class="container">
             <a class="navbar-brand m-auto" href="#">
             <img src="../src/img/FEU_Tamaraws_official_logo.png" alt="Feu_Tamaraw" height="50">
             </a>
         </div>
     </nav>
-    <div class="container-fluid page-body-wrapper full-page-wrapper">
+    <div class="container-fluid page-body-wrapper full-page-wrapper mt-n5">
       <div class="content-wrapper d-flex align-items-center auth px-0">
         <div class="row w-100 mx-0">
           <div class="col-lg-4 mx-auto">
@@ -91,30 +91,60 @@ if(isset($_POST['login'])){
     $username = $_POST['username'];
     $password = $_POST['password'];
 
+    if(empty($username || $password)){
+      echo '<script type="text/javascript">
 
-    $query_login = "SELECT * FROM users WHERE username = '$username'";
-    $run_login = mysqli_query($conn,$query_login);
+      $(document).ready(function(){
+          sweetAlert("Oops...", "Something went wrong!", "error");
+      });
+      
+      </script>
+      ';
+    }elseif($username == ''){
+      echo '<script type="text/javascript">
 
-    if(mysqli_num_rows($run_login) > 0){
-        foreach($run_login as $row){
-            if(password_verify($password,$row['password'])){
-                $_SESSION['username'] = $username;
-                $_SESSION['account_id'] = $row['account_id'];
-                $_SESSION['first_name'] = $row['first_name'];
-                $_SESSION['last_name'] = $row['last_name'];
-                header("location: home.php");
-            }
-        }
+      $(document).ready(function(){
+          sweetAlert("Oops...", "Something went wrong!", "error");
+      });
+      
+      </script>
+      ';
+    }elseif($password == ''){
+      echo '<script type="text/javascript">
+
+      $(document).ready(function(){
+          sweetAlert("Oops...", "Something went wrong!", "error");
+      });
+      
+      </script>
+      ';
     }else{
-        echo '<script type="text/javascript">
+      $query_login = "SELECT * FROM users WHERE username = '$username'";
+      $run_login = mysqli_query($conn,$query_login);
+  
+      if(mysqli_num_rows($run_login) > 0){
+          foreach($run_login as $row){
+              if(password_verify($password,$row['password'])){
+                  $_SESSION['username'] = $username;
+                  $_SESSION['account_id'] = $row['account_id'];
+                  $_SESSION['first_name'] = $row['first_name'];
+                  $_SESSION['last_name'] = $row['last_name'];
+                  header("location: home.php");
+              }
+          }
+      }else{
+          echo '<script type="text/javascript">
+  
+          $(document).ready(function(){
+            swal("Error!", "Something went wrong.", "error")
+          });
+          
+          </script>
+          ';
+      }
 
-        $(document).ready(function(){
-            sweetAlert("Oops...", "Something went wrong!", "error");
-        });
-        
-        </script>
-        ';
     }
+   
 
 }
 

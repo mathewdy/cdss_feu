@@ -3,7 +3,9 @@
 ob_start();
 session_start();
 include('../../connection/connection.php');
-
+if(empty($_SESSION['account_id'])){
+    echo "<script>window.location.href='login.php'</script>";   
+}
 
 ?>
 

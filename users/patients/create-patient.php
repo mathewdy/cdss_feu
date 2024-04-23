@@ -4,7 +4,9 @@ session_start();
 include('../../connection/connection.php');
 $_SESSION['account_id'] ;
 //error_reporting(E_ERROR | E_PARSE);
-
+if(empty($_SESSION['account_id'])){
+    echo "<script>window.location.href='login.php'</script>";   
+}
 ?>
 
 
