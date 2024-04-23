@@ -27,9 +27,9 @@ include('../connection/connection.php');
 </head>
 <body>
   <div class="container-scroller">
-  <nav class="navbar bg-light">
+  <nav class="navbar bg-success">
         <div class="container">
-            <a class="navbar-brand m-auto" href="#">
+            <a class="navbar-brand m-auto" href="login.php">
             <img src="../src/img/FEU_Tamaraws_official_logo.png" alt="Feu_Tamaraw" height="50">
             </a>
         </div>
@@ -39,23 +39,24 @@ include('../connection/connection.php');
         <div class="row w-100 mx-0">
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-              <div class="col-md-12">
-                </div>
+              <div class="col-md-12 vh-50">
+                    <p class="h2 text-center">Sign Up</p>
+                    <hr class="featurette-divider">
                     <form id="stepperForm" method="post" action="" enctype="multipart/form-data">
                         <div id="step1" class="step">
                             <!-- <h2>Step 1: Details</h2> -->
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-lg" name="first_name" placeholder="First Name">
+                                <input type="text" class="form-control form-control-sm" name="first_name" placeholder="First Name">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-lg" name="middle_name" placeholder="Middle Name">
+                                <input type="text" class="form-control form-control-sm" name="middle_name" placeholder="Middle Name">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-lg" name="last_name" placeholder="Last Name">
+                                <input type="text" class="form-control form-control-sm" name="last_name" placeholder="Last Name">
                             </div>
                             <div class="form-group">
                                 <label for="">Role:</label>
-                                <select name="role" class="form-control form-control-lg" id="">
+                                <select name="role" class="form-control form-control-sm" id="">
                                     <option value="">-Select-</option>
                                     <option value="1">Doctor</option>
                                     <option value="2">Nurse</option>
@@ -63,9 +64,11 @@ include('../connection/connection.php');
                             </div>
                             <div class="form-group">
                                 <label for="">Date of birth:</label>
-                                <input type="date" name="date_of_birth" class="form-control form-control-lg" id="dateInput">
+                                <input type="date" name="date_of_birth" class="form-control form-control-sm" id="dateInput">
                             </div>
-                            <button type="button" class="btn btn-primary next">Next</button>
+                            <span class="d-flex justify-content-end">
+                                <button type="button" class="btn btn-md btn-success next">Next</button>
+                            </span>
                         </div>
 
                         <!-- Repeat the above div structure for each step -->
@@ -74,47 +77,55 @@ include('../connection/connection.php');
                         <div id="step2" class="step" style="display: none;">
                         <!-- <h2>Step 2: Address</h2> -->
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-lg" name="house_number" placeholder="House Number">
+                                <input type="text" class="form-control form-control-sm" name="house_number" placeholder="House Number">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-lg" name="street" placeholder="Street">
+                                <input type="text" class="form-control form-control-sm" name="street" placeholder="Street">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-lg" name="subdivision" placeholder="Subdivision">
+                                <input type="text" class="form-control form-control-sm" name="subdivision" placeholder="Subdivision">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-lg" name="brgy" placeholder="Barangay">
+                                <input type="text" class="form-control form-control-sm" name="brgy" placeholder="Barangay">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-lg" name="city" placeholder="City">
+                                <input type="text" class="form-control form-control-sm" name="city" placeholder="City">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-lg" name="region" placeholder="Region">
+                                <input type="text" class="form-control form-control-sm" name="region" placeholder="Region">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-lg" name="zip_code" placeholder="Zip Code">
+                                <input type="text" class="form-control form-control-sm" name="zip_code" placeholder="Zip Code">
                             </div>
-                        
-                        <button type="button" class="btn btn-secondary prev">Previous</button>
-                        <button type="button" class="btn btn-primary next">Next</button>
+                            <span class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-md btn-secondary prev">Previous</button>
+                                <button type="button" class="btn btn-md btn-success next">Next</button>
+                            </span>
+                       
                         </div>
 
                         <div id="step3" class="step" style="display: none;">
-                        <div class="form-group">
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-lg" name="username" placeholder="Username">
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-sm" name="username" placeholder="Username">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="password" class="form-control form-control-sm" placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <input type="file" name="user_image">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <input type="password" name="password" class="form-control form-control-lg" placeholder="Password">
-                            </div>
-                            <div class="form-group">
-                                <input type="file" name="user_image">
-                            </div>
-                        </div>
-                        <button type="button" class="btn btn-secondary prev">Previous</button>
-                        <input type="submit" class="btn btn-success" value="Sign Up" name="create_account">
+                            <span class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-md btn-secondary prev">Previous</button>
+                                <input type="submit" class="btn btn-md btn-success" value="Sign Up" name="create_account">
+                            </span>
                         </div>
                     </form>  
+                    <hr class="featurette-divider">
+                    <div class="text-center mt-4 font-weight-light">
+                        Already have an account? <a href="login.php" class="text-success">Sign In</a>
+                    </div>
             </div>
           </div>
         </div>
