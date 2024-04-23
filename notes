@@ -1,22 +1,14 @@
-i think stepper dapat yung pag create ng patients
-kase may infant, need i validate,
-then kung existing na yung parent dun sa system dapat include na lang doon sa family tree 
+1.
+ma create muna yung view patients
 
-or dapat mauna yung parent sa registration bago yung patient, then gagamit tayo ng dynamic
-add multiple form using jquery
-then sa codes natin kapag may nilagay tayong comment na "//subject to change" mag brainstorming tayo dito
+- dapat ma view yung CDSS nya na
+- dapat makapag create ng CDSS 
 
 
+2. ma tapos yung edit-patients
 
 
-Patients Data:
+- parents info
+-patient info 
 
-NAME:Martin Policarpio
-AGE: 1
-BIRTHDATE: February 27, 2023
-PATIENT’S ID: 12222
-GENDER: Male
-MARITAL STATUS: Single
-ADDRESS: 123A Morayta, Manila
-ETHNICITY: Filipino
-LANGUAGES: English and Filipino
+3. optimize code

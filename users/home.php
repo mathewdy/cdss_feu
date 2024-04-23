@@ -132,8 +132,9 @@ if(mysqli_num_rows($q_run) > 0){
                                 <td><?php echo $row_patients['patient_last_name']?></td>
                                 <td><?php echo date("Y-M-d",strtotime($row_patients['patient_date_of_birth']))?></td>
                                 <td><a href="">Delete</a> 
-                                <a href="edit-patient.php?patient_id=<?php echo $row_patients['patient_id']?>">Edit</a></td>
-                                
+                                <a href="edit-patient.php?patient_id=<?php echo $row_patients['patient_id']?>">Edit</a>
+                                <a href="view-patient.php?patient_id=<?php echo $row_patients['patient_id']?>">View</a>
+                                </td>
                                 </tr>
                             <?php
                             }

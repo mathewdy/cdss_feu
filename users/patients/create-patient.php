@@ -85,6 +85,11 @@ if(empty($_SESSION['account_id'])){
 
         <label for="">Date of Birth:</label>
         <input type="date" name="date_of_birth_mother">
+        <br>
+
+        <label for="">Contact Number:</label>
+        <input type="text" name="contact_number_mother">
+        <br>
         
         <br>
 
@@ -273,6 +278,7 @@ if(isset($_POST['create_patient'])){
     $last_name_mother = $_POST['last_name_mother'];
     $date_of_birth_mother = $_POST['date_of_birth_mother'];
     $address_mother = $_POST['address_mother'];
+    $contact_number_mother = $_POST['contact_number_mother'];
 
     //image
     $image_mother = $_FILES['image_mother']['name'];
@@ -293,7 +299,7 @@ if(isset($_POST['create_patient'])){
             foreach($run_patient_id_mother as $row_patient_id_mother){
                 $row_patient_id_mother['patient_id'];
 
-                $query_mother = "INSERT INTO mothers (account_id,patient_id,first_name,middle_name,last_name,date_of_birth,address,image,date_created,date_updated,modified_by) VALUES ('$account_id_mother','".$row_patient_id_mother['patient_id']."','$first_name_mother', '$middle_name_mother','$last_name_mother', '$date_of_birth_mother','$address_mother','$image_mother','$date', '$date', '$account_id_user' )";
+                $query_mother = "INSERT INTO mothers (account_id,patient_id,first_name,middle_name,last_name,date_of_birth,address,contact_number,image,date_created,date_updated,modified_by) VALUES ('$account_id_mother','".$row_patient_id_mother['patient_id']."','$first_name_mother', '$middle_name_mother','$last_name_mother', '$date_of_birth_mother','$address_mother','$contact_number_mother','$image_mother','$date', '$date', '$account_id_user' )";
                 $result_mother = mysqli_query($conn,$query_mother);
 
                 if($result_mother) {
