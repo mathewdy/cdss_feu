@@ -2,224 +2,290 @@
 ob_start();
 session_start();
 include('../../connection/connection.php');
-$_SESSION['account_id'] ;
-//error_reporting(E_ERROR | E_PARSE);
+$user_id = $_SESSION['account_id'];
+$first_name = $_SESSION['first_name'];
+$ln = $_SESSION['last_name'];
+$_SESSION['username'];
 if(empty($_SESSION['account_id'])){
     echo "<script>window.location.href='login.php'</script>";   
+}
+$q_user = "SELECT image FROM users WHERE account_id = $user_id";
+$q_run = mysqli_query($conn, $q_user);
+if(mysqli_num_rows($q_run) > 0){
+    foreach($q_run as $rows){
+        $image = $rows['image'];
+    }
 }
 ?>
 
 
+        
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Skydash Admin</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="../../src/vendors/feather/feather.css">
+  <link rel="stylesheet" href="../../src/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="../../src/vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="../../src/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="../../src/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" type="text/css" href="../../src/js/select.dataTables.min.css">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="../../src/css/vertical-layout-light/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="../../src/images/favicon.png" />
+  <!-- <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css" /> -->
+  <link rel="stylesheet" href="../../src/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+  <!-- <link rel="stylesheet" href="../../src/css/custom/modal.css"> -->
 </head>
+<style>
+    .tr .td{
+        cursor: pointer !important;
+    }
+</style>
 <body>
-    <h1>Create patient</h1>
-    <a href="../home.php">Home</a>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" href="home.php"><img src="../../src/img/FEU_Tamaraws_official_logo.png" class="mr-2" alt="logo"/>FEU</a>
+        <a class="navbar-brand brand-logo-mini" href="home.php"><img src="../../src/img/FEU_Tamaraws_official_logo.png" class="mr-2" alt="logo"/></a>
 
-    <a href="javascript:void(0)" class="add-more-form">Add</a>
-
-    <form action="" method="POST" enctype='multipart/form-data'>
-
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         
-        <h2>Infant</h2>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+              <img src="images/<?= $image; ?>" alt="profile"/>
 
-        <div class="main-form">
-        <label for="">First Name:</label>
-        <input type="text" name="first_name_infant[]">
-        <br>
-        <label for="">Middle Name:</label>
-        <input type="text" name="middle_name_infant[]">
-        <br>
-        <label for="">Last Name:</label>
-        <input type="text" name="last_name_infant[]">
-        <br>
-        <label for="">Suffix:</label>
-        <input type="text" name="suffix_infant[]">
-        <br>
-        <label for="">Date of Birth:</label>
-        <input type="date" name="date_of_birth_infant[]" id="">
-        <br>
-        <label for="">Gender:</label>
-        <select name="gender_infant[]" id="">
-            <option value="">-Select-</option>
-            <option value="1">Male</option>
-            <option value="2">Female</option>
-        </select>
-        <br>
-        <label for="">Marital Status:</label>
-        <select name="marital_status_infant[]" id="">
-            <option value="">-Select-</option>
-            <option value="1">Single</option>
-            <option value="2">Married</option>
-            <option value="3">Divorced</option>
-            <option value="4">Separated</option>
-        </select>
-        <br>
-        <label for="">Image:</label>
-        <input type="file" name="image_infant[]" multiple="">
-        <br>
-        </div>
+              <!-- pasiksik ng pic dito -->
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <a class="dropdown-item">
+                <i class="ti-settings text-primary"></i>
+                Settings
+              </a>
+              <a class="dropdown-item" href="logout.php">
+                <i class="ti-power-off text-primary"></i>
+                Logout  
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <div class="main-panel w-100">
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav aria-label="breadcrumb" >
+                            <ol class="breadcrumb" style="border: none;">
+                                <li class="breadcrumb-item"><a href="../home.php">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Create patient</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-md-12 grid-margin stretch-card">  
+                        <div class="card">
+                            <div class="card-people mt-auto p-4">
+                                <form action="" method="POST" enctype='multipart/form-data'>
+                                    <div class="row mb-4">
+                                        <div class="col-lg-12">
+                                            <h2>Infant</h2>
+                                            <a href="javascript:void(0)" class="add-more-form">Add</a>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="main-form row">
+                                                        <div class="col-lg-4">
+                                                            <label for="">First Name:</label>
+                                                            <input type="text" class="form-control" name="first_name_infant[]">
+                                                            <br>
+                                                            <label for="">Middle Name:</label>
+                                                            <input type="text" class="form-control" name="middle_name_infant[]">
+                                                            <br>
+                                                            <label for="">Last Name:</label>
+                                                            <input type="text" class="form-control" name="last_name_infant[]">
+                                                            <br>
+                                                            <label for="">Suffix:</label>
+                                                            <input type="text" class="form-control" name="suffix_infant[]">
+                                                            <br>
+                                                            <label for="">Date of Birth:</label>
+                                                            <input type="date" class="form-control" name="date_of_birth_infant[]" id="">
+                                                            <br>
+                                                            <label for="">Gender:</label>
+                                                            <select class="form-control" name="gender_infant[]" id="">
+                                                                <option value="">-Select-</option>
+                                                                <option value="1">Male</option>
+                                                                <option value="2">Female</option>
+                                                            </select>
+                                                            <br>
+                                                            <label for="">Marital Status:</label>
+                                                            <select class="form-control" name="marital_status_infant[]" id="">
+                                                                <option value="">-Select-</option>
+                                                                <option value="1">Single</option>
+                                                                <option value="2">Married</option>
+                                                                <option value="3">Divorced</option>
+                                                                <option value="4">Separated</option>
+                                                            </select>
+                                                            <br>
+                                                            <label for="">Image:</label>
+                                                            <input type="file" name="image_infant[]" multiple="">
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <hr class="featurette-divider">
+                                    <div class="row mb-5">
+                                        <div class="col-lg-6">
+                                            <h2>Name of Mother</h2>
+                                            <label for="">First Name:</label>
+                                            <input type="text" name="first_name_mother">
+                                            <br>
+
+                                            <label for="">Middle Name:</label>
+                                            <input type="text" name="middle_name_mother">
+                                            <br>
+
+                                            <label for="">Last Name:</label>
+                                            <input type="text" name="last_name_mother">
+                                            <br>
+
+                                            <label for="">Date of Birth:</label>
+                                            <input type="date" name="date_of_birth_mother">
+                                            <br>
+
+                                            <label for="">Contact Number:</label>
+                                            <input type="text" name="contact_number_mother">
+                                            <br>
+
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <h2>Address</h2>
+
+                                            <label for="">Address:</label>
+                                            <input type="text" name="address_mother" id="address1">
+
+                                            <br>
+
+                                            <label for="">Image:</label>
+                                            <input type="file" name="image_mother" multiple="">
+                                            <br>
+
+                                            <input type="checkbox" name="" id="check_address">
+                                            <label for="">Same address for father</label>
+                                        </div>
+                                    </div>
+                                    <hr class="featurette-divider">
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <h2>Name of Father</h2>
+                                            <label for="">First Name:</label>
+                                            <input type="text" name="first_name_father">
+                                            <br>
+
+                                            <label for="">Middle Name:</label>
+                                            <input type="text" name="middle_name_father">
+                                            <br>
+
+                                            <label for="">Last Name:</label>
+                                            <input type="text" name="last_name_father">
+                                            <br>
+
+                                            <label for="">Date of Birth:</label>
+                                            <input type="date" name="date_of_birth_father">
+
+                                           
+
+                                            <!-- stepper
+                                            1. Infant
+                                            2. Mother
+                                            3. Father
+                                            4. Save
+                                            patapusin mo lang code ko -->
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <h2>Address</h2>
+
+                                            <label for="">Address:</label>
+                                            <input type="text" name="address_father" id="address2">
+                                                <br>
+
+                                            <label for="">Image:</label>
+                                            <input type="file" name="image_father" multiple="">
+                                                <br>
+                                        </div>
+                                    </div>
+                                    <input type="submit" name="create_patient" value="Save">
+                                    </form>
+                            </div>
+                        </div>
 
 
-    <div class="paste-new-forms"></div>
+                    </div>
+                </div>  
+            </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024. All rights reserved.</span>
+          </div>
+        </footer> 
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>   
+    <!-- page-body-wrapper ends -->
+  </div>
+<!-- container-scroller -->
+<script src="https://code.jquery.com/jquery-3.7.1.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+<!-- plugins:js -->
+<script src="../../src/vendors/js/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<script src="../../src/vendors/chart.js/Chart.min.js"></script>
+<script src="../../src/vendors/datatables.net/jquery.dataTables.js"></script>
+<script src="../../src/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script src="../../src/js/dataTables.select.min.js"></script>
 
-        <h2>Name of Mother</h2>
-
-
-        <label for="">First Name:</label>
-        <input type="text" name="first_name_mother">
-        <br>
-
-        <label for="">Middle Name:</label>
-        <input type="text" name="middle_name_mother">
-        <br>
-
-        <label for="">Last Name:</label>
-        <input type="text" name="last_name_mother">
-        <br>
-
-        <label for="">Date of Birth:</label>
-        <input type="date" name="date_of_birth_mother">
-        <br>
-
-        <label for="">Contact Number:</label>
-        <input type="text" name="contact_number_mother">
-        <br>
-        
-        <br>
-
-        <h2>Address</h2>
-
-        <label for="">Address:</label>
-        <input type="text" name="address_mother" id="address1">
-
-        <br>
-
-        <label for="">Image:</label>
-        <input type="file" name="image_mother" multiple="">
-        <br>
-
-        <input type="checkbox" name="" id="check_address">
-        <label for="">Same address for father</label>
-
-
-
-        
-        <h2>Name of Father</h2>
-
-
-        <label for="">First Name:</label>
-        <input type="text" name="first_name_father">
-        <br>
-
-        <label for="">Middle Name:</label>
-        <input type="text" name="middle_name_father">
-        <br>
-
-        <label for="">Last Name:</label>
-        <input type="text" name="last_name_father">
-        <br>
-
-        <label for="">Date of Birth:</label>
-        <input type="date" name="date_of_birth_father">
-        
-        <h2>Address</h2>
-
-        <label for="">Address:</label>
-        <input type="text" name="address_father" id="address2">
-        <br>
-        
-        <label for="">Image:</label>
-        <input type="file" name="image_father" multiple="">
-        <br>
-
-        <!-- stepper
-        1. Infant
-        2. Mother
-        3. Father
-        4. Save
-        patapusin mo lang code ko -->
-
-        <input type="submit" name="create_patient" value="Save">
-    </form>
-
-
-    <script src="https://code.jquery.com/jquery-3.7.1.js" ></script>
-
-    <script>
-        $(document).ready(function(){
-            $('#check_address').click(function() {
-                var check_status = this.checked;
-                if (check_status == true){
-                    document.getElementById('address2').value = document.getElementById ('address1').value;
-                }else{
-                    document.getElementById('address2').value = "";
-                }
-            })
-        });
-    </script>
-
-    <script>
-        $(document).ready(function () {
-
-
-            $(document).on('click', '.remove-button' , function(){
-                $(this).closest('.main-form').remove();
-            });
-
-
-            $(document).on('click', '.add-more-form', function (){
-                $('.paste-new-forms').append('<div class="main-form">\
-                    <br>\
-                    <label for="">First Name:</label>\
-                    <input type="text" name="first_name_infant[]">\
-                    <br>\
-                    <label for="">Middle Name:</label>\
-                    <input type="text" name="middle_name_infant[]">\
-                    <br>\
-                    <label for="">Last Name:</label>\
-                    <input type="text" name="last_name_infant[]">\
-                    <br>\
-                    <label for="">Suffix:</label>\
-                    <input type="text" name="suffix_infant[]">\
-                    <br>\
-                    <label for="">Date of Birth:</label>\
-                    <input type="date" name="date_of_birth_infant[]" id="">\
-                    <br>\
-                    <label for="">Image:</label>\
-                    <label for="">Gender:</label>\
-                    <select name="gender_infant[]" id="">\
-                        <option value="">-Select-</option>\
-                        <option value="1">Male</option>\
-                        <option value="2">Female</option>\
-                    </select>\
-                    <br>\
-                    <label for="">Marital Status:</label>\
-                    <select name="marital_status_infant[]" id="">\
-                        <option value="">-Select-</option>\
-                        <option value="1">Single</option>\
-                        <option value="2">Married</option>\
-                        <option value="3">Divorced</option>\
-                        <option value="4">Separated</option>\
-                    </select>\
-                    <br>\
-                    <input type="file" name="image_infant[]" multiple="">\
-                    <br>\
-                    <input type="submit" class="remove-button" name="remove_infant" value="Remove" >\
-                    </div>\
-                    ');
-            });
-
-        });
-    </script>
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script src="../../src/js/off-canvas.js"></script>
+<script src="../../src/js/hoverable-collapse.js"></script>
+<script src="../../src/js/template.js"></script>
+<script src="../../src/js/settings.js"></script>
+<script src="../../src/js/todolist.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+<script src="../../src/js/dashboard.js"></script>
+<script src="../../src/js/Chart.roundedBarCharts.js"></script>
+<!-- End custom js for this page-->
+<!-- <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script> -->
+<script src="../../src/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script src="../../src/js/custom/address.js"></script>
+<script src="../../src/js/custom/remove-btn.js"></script>
+</script>
 </body>
 </html>
-
 
 <?php
 if(isset($_POST['create_patient'])){
