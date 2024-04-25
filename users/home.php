@@ -28,7 +28,7 @@ if(mysqli_num_rows($q_run) > 0){
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Skydash Admin</title>
+  <title>FEU</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="../src/vendors/feather/feather.css">
   <link rel="stylesheet" href="../src/vendors/ti-icons/css/themify-icons.css">
@@ -47,11 +47,7 @@ if(mysqli_num_rows($q_run) > 0){
   <link rel="stylesheet" href="../src/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
   <link rel="stylesheet" href="../src/css/custom/swal-centered.css">
 </head>
-<style>
-    .tr .td{
-        cursor: pointer !important;
-    }
-</style>
+
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->

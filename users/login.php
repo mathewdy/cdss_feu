@@ -10,6 +10,7 @@ include('../connection/connection.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FEU</title>
     <link rel="stylesheet" href="../src/vendors/feather/feather.css">
     <link rel="stylesheet" href="../src/vendors/ti-icons/css/themify-icons.css">
     <link rel="stylesheet" href="../src/vendors/css/vendor.bundle.base.css">
