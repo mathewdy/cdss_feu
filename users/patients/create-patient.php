@@ -71,7 +71,7 @@ if(mysqli_num_rows($q_run) > 0){
               <!-- pasiksik ng pic dito -->
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
+              <a class="dropdown-item" href="../my-profile.php">
                 <i class="ti-settings text-primary"></i>
                 Settings
               </a>
