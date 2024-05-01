@@ -109,8 +109,6 @@ if(mysqli_num_rows($q_run) > 0){
                             <?php
 
                                 if(isset($_GET['patient_id'])){
-
-                                    $patient_id = $_GET['patient_id'];
                                     $patient_id = $_GET['patient_id'];
 
                                     $query_patients_profile = "SELECT infants.id AS infant_id ,infants.patient_id AS patient_id ,infants.first_name AS patient_first_name ,infants.middle_name AS patient_middle_name,infants.last_name AS patient_last_name ,infants.image,infants.suffix AS patient_suffix,infants.date_of_birth AS patient_date_of_birth,infants.gender AS patient_gender,infants.marital_status AS patient_marital_status,infants.image AS patient_image ,infants.id_mother_parent AS patient_id_mother_parent,infants.id_father_parent AS patient_id_father_parent,mothers.id AS mother_id,mothers.account_id AS mother_account_id,mothers.patient_id AS mother_patient_id,mothers.first_name AS mother_first_name,mothers.middle_name AS mother_middle_name,mothers.last_name AS mother_last_name ,mothers.date_of_birth AS mother_date_of_birth,mothers.address AS mother_address,mothers.image AS mother_image ,fathers.id AS father_id,fathers.account_id AS father_account_id ,fathers.patient_id AS father_patient_id ,fathers.first_name AS father_first_name,fathers.middle_name AS father_middle_name,fathers.last_name AS father_last_name,fathers.date_of_birth AS father_date_of_birth,fathers.address AS father_address,fathers.image AS father_image
@@ -194,7 +192,7 @@ if(mysqli_num_rows($q_run) > 0){
                                                                                 <hr class="featurette-divider">
                                                                                 <div class="row mt-5 mb-4">
                                                                                     <div class="col-lg-4">
-                                                                                        <img src="<?php echo "patients/mother_images/". $row_patients['mother_image']?>" alt="patient image" style="height: 150px; width: 150px; border-radius:0;">
+                                                                                        <img src="<?php echo "patients/mother_images/". $row_patients['mother_image']?>" alt="mother image" style="height: 150px; width: 150px; border-radius:0;">
                                                                                         <input type="file" name="mother_image_new">
                                                                                         <input type="hidden" name="mother_old_image" value="<?php echo $row_patients['mother_image']?>">
                                                                                         <input type="hidden" name="patient_id" value="<?php echo $row_patients['patient_id']?>">
@@ -234,9 +232,9 @@ if(mysqli_num_rows($q_run) > 0){
                                                                                 <hr class="featurette-divider">
                                                                                 <div class="row mt-5 mb-4">
                                                                                     <div class="col-lg-4">
-                                                                                        <img src="<?php echo "patients/mother_images/". $row_patients['mother_image']?>" alt="patient image" style="height: 150px; width: 150px; border-radius:0;">
-                                                                                        <input type="file" name="mother_image_new">
-                                                                                        <input type="hidden" name="mother_old_image" value="<?php echo $row_patients['mother_image']?>">
+                                                                                        <img src="<?php echo "patients/father_image/". $row_patients['father_image']?>" alt="father image" style="height: 150px; width: 150px; border-radius:0;">
+                                                                                        <input type="file" name="father_image_new">
+                                                                                        <input type="hidden" name="father_old_image" value="<?php echo $row_patients['father_image']?>">
                                                                                         <input type="hidden" name="patient_id" value="<?php echo $row_patients['patient_id']?>">
                             
                                                                                     </div>
@@ -349,27 +347,26 @@ if(isset($_POST['update_data'])){
     }else{
         $update_file_name_patient = $patient_old_image;
     }
+    
 
-    if(file_exists("patients/infant_images/" . $_FILES['patient_image_new']['name'])){
-        $filename = $_FILES['patient_image_new']['name'];
-        echo "image already exists";
-    }else{
-        $query_update_patients_profile = "UPDATE infants SET patient_id = '$patient_id', first_name = '$patient_first_name', middle_name = '$patient_middle_name', last_name = '$patient_last_name', suffix = '$patient_suffix' , date_of_birth = '$patient_date_of_birth', gender = '$patient_gender', image = '$update_file_name_patient' WHERE patient_id = '$patient_id'";
-        $run_update_patients_profile = mysqli_query($conn,$query_update_patients_profile);
 
-        if($run_update_patients_profile){
-            if($_FILES['patient_image_new']['name'] !=''){
-                move_uploaded_file($_FILES['patient_image_new']['tmp_name'], "patients/infant_images/".$_FILES['patient_image_new']['name']);
-                unlink("patients/infant_images/".$patient_old_image);
-                // echo "updated data and image";
-                header("location: home.php");
-            }else{
-                echo "Error updating image";
-            }
+    $query_update_patients_profile = "UPDATE infants SET patient_id = '$patient_id', first_name = '$patient_first_name', middle_name = '$patient_middle_name', last_name = '$patient_last_name', suffix = '$patient_suffix' , date_of_birth = '$patient_date_of_birth', gender = '$patient_gender', image = '$update_file_name_patient' WHERE patient_id = '$patient_id'";
+    $run_update_patients_profile = mysqli_query($conn,$query_update_patients_profile);
+
+    if($run_update_patients_profile){
+        if($_FILES['patient_image_new']['name'] !=''){
+            move_uploaded_file($_FILES['patient_image_new']['tmp_name'], "patients/infant_images/".$_FILES['patient_image_new']['name']);
+            unlink("patients/infant_images/".$patient_old_image);
+            // echo "updated data and image";
+            header("Location: edit-patient.php?patient_id=$patient_id");
         }else{
-            echo "Error updating data";
+            echo "Error updating image";
+            header("Location: edit-patient.php?patient_id=$patient_id");
         }
+    }else{
+        echo "Error updating data";
     }
+    
 
 }
 
