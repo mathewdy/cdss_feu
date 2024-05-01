@@ -177,12 +177,13 @@ $_SESSION['account_id'];
                     <div class="card">
                     <form action="" method="POST" enctype='multipart/form-data'>
                     <input type="hidden" name="patient_id" value="<?php echo $row_patient['patient_id']?>">
-                        <textarea name="patients_assessments"><?php if(empty($row_patient['remarks_assessments'])){
+                        <textarea name="patients_assessments" id="checklist"><?php if(empty($row_patient['remarks_assessments'])){
                                 ?>
                             <table style="width: 100%; table-layout:fixed">
                                 <tr>
                                     <td><b>Assessment</b></td>
                                     <td>NURSE IN CHARGE:</td>
+                                    <td>ATTENDING PHYSICIAN:</td>
                                 </tr>
                             </table>
                             <table style="width: 100%; table-layout: fixed;">
@@ -201,21 +202,21 @@ $_SESSION['account_id'];
                                             <td></td>
                                             <td>Appearance:</td>
                                             <td>Pulse Rate:</td>
-                                            <td><ul style="margin: 0;"><li>Hepa B</li></ul></td>
-                                            <td>Erythromycin Eye Ointment</td>
+                                            <td><ul style="margin: 0;"></li></ul></td>
+                                            <td></td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td>Pulse:</td>
                                             <td>Respiratory Rate:</td>
-                                            <td><ul style="margin: 0;"><li>DTap</li></ul></td>
+                                            <td><ul style="margin: 0;"></ul></td>
                                             <td></td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td>Grimace:</td>
                                             <td>Temperature:</td>
-                                            <td><ul style="margin: 0;"><li>Vitamin K</li></ul></td>
+                                            <td><ul style="margin: 0;"></ul></td>
                                             <td></td>
                                         </tr>
                                         <tr>
@@ -246,12 +247,21 @@ $_SESSION['account_id'];
                                                 <td>
                                                     <ul>
                                                         <li>Diet:</li>
-                                                        <li>Vital Signs:</li>
-                                                        <li>Pulse Rate:</li>
-                                                        <li>Respiratory Rate:</li>
-                                                        <li>Temperature:</li>
-                                                        <li>Weight:</li>
-                                                        <li>Height:</li>
+                                                        <li><b>Vital Signs:</b></li>
+                                                        <ul>
+                                                            <li>Pulse Rate:</li>
+                                                            <li>Respiratory Rate:</li>
+                                                            <li>Temperature:</li>
+                                                            <li>Weight:</li>
+                                                            <li>Height:</li>
+                                                        </ul>
+
+                                                        <li><b> Milestone Development:</b></li>
+                                                        <ul class="tox-checklist">Begins to focus on objects up to 12 inches away 
+                                                        <li>Follows objects with eyes</li>
+                                                        <li>Reacts to loud sounds</li>
+                                                        <li>May briefly lift head while lying on stomach</li>
+                                                        </ul>
                                                         <li>Laboratory:</li>
                                                         <li>Medication Given:</li>
                                                         <li>Doctor’s Note:</li>
@@ -264,15 +274,24 @@ $_SESSION['account_id'];
                                     <p style="text-align: center; font-weight: bold;">2nd Month</p>
                                         <table style="width: 100%; table-layout: fixed;">
                                             <tr>
-                                                <td>
+                                            <td>
                                                     <ul>
                                                         <li>Diet:</li>
-                                                        <li>Vital Signs:</li>
-                                                        <li>Pulse Rate:</li>
-                                                        <li>Respiratory Rate:</li>
-                                                        <li>Temperature:</li>
-                                                        <li>Weight:</li>
-                                                        <li>Height:</li>
+                                                        <li><b>Vital Signs:</b></li>
+                                                        <ul>
+                                                            <li>Pulse Rate:</li>
+                                                            <li>Respiratory Rate:</li>
+                                                            <li>Temperature:</li>
+                                                            <li>Weight:</li>
+                                                            <li>Height:</li>
+                                                        </ul>
+
+                                                        <li><b> Milestone Development:</b></li>
+                                                        <ul class="tox-checklist">Begins to smile responsively
+                                                        <li>Coos and gurgles</li>
+                                                        <li>Recognizes familiar faces</li>
+                                                        <li>Holds head up momentarily while lying on stomach</li>
+                                                        </ul>
                                                         <li>Laboratory:</li>
                                                         <li>Medication Given:</li>
                                                         <li>Doctor’s Note:</li>
@@ -289,15 +308,24 @@ $_SESSION['account_id'];
                                         <p style="text-align: center; font-weight: bold;">3rd Month</p>
                                         <table style="width: 100%; table-layout: fixed;">
                                             <tr>
-                                                <td>
+                                            <td>
                                                     <ul>
                                                         <li>Diet:</li>
-                                                        <li>Vital Signs:</li>
-                                                        <li>Pulse Rate:</li>
-                                                        <li>Respiratory Rate:</li>
-                                                        <li>Temperature:</li>
-                                                        <li>Weight:</li>
-                                                        <li>Height:</li>
+                                                        <li><b>Vital Signs:</b></li>
+                                                        <ul>
+                                                            <li>Pulse Rate:</li>
+                                                            <li>Respiratory Rate:</li>
+                                                            <li>Temperature:</li>
+                                                            <li>Weight:</li>
+                                                            <li>Height:</li>
+                                                        </ul>
+
+                                                        <li><b> Milestone Development:</b></li>
+                                                        <ul class="tox-checklist">Follows moving objects with eyes
+                                                        <li>Begins to hold head steady when upright</li>
+                                                        <li>Begins to imitate facial expressions</li>
+                                                        <li>Recognizes familiar voices</li>
+                                                        </ul>
                                                         <li>Laboratory:</li>
                                                         <li>Medication Given:</li>
                                                         <li>Doctor’s Note:</li>
@@ -310,15 +338,24 @@ $_SESSION['account_id'];
                                     <p style="text-align: center; font-weight: bold;">4th Month</p>
                                         <table style="width: 100%; table-layout: fixed;">
                                             <tr>
-                                                <td>
+                                            <td>
                                                     <ul>
                                                         <li>Diet:</li>
-                                                        <li>Vital Signs:</li>
-                                                        <li>Pulse Rate:</li>
-                                                        <li>Respiratory Rate:</li>
-                                                        <li>Temperature:</li>
-                                                        <li>Weight:</li>
-                                                        <li>Height:</li>
+                                                        <li><b>Vital Signs:</b></li>
+                                                        <ul>
+                                                            <li>Pulse Rate:</li>
+                                                            <li>Respiratory Rate:</li>
+                                                            <li>Temperature:</li>
+                                                            <li>Weight:</li>
+                                                            <li>Height:</li>
+                                                        </ul>
+
+                                                        <li><b> Milestone Development:</b></li>
+                                                        <ul class="tox-checklist">Begins to roll from tummy to back 
+                                                        <li>Laughs out loud</li>
+                                                        <li>Reaches for and grabs objects</li>
+                                                        <li>Begins to push up on arms while lying on stomach</li>
+                                                        </ul>
                                                         <li>Laboratory:</li>
                                                         <li>Medication Given:</li>
                                                         <li>Doctor’s Note:</li>
@@ -335,15 +372,24 @@ $_SESSION['account_id'];
                                         <p style="text-align: center; font-weight: bold;">5th Month</p>
                                         <table style="width: 100%; table-layout: fixed;">
                                             <tr>
-                                                <td>
+                                            <td>
                                                     <ul>
                                                         <li>Diet:</li>
-                                                        <li>Vital Signs:</li>
-                                                        <li>Pulse Rate:</li>
-                                                        <li>Respiratory Rate:</li>
-                                                        <li>Temperature:</li>
-                                                        <li>Weight:</li>
-                                                        <li>Height:</li>
+                                                        <li><b>Vital Signs:</b></li>
+                                                        <ul>
+                                                            <li>Pulse Rate:</li>
+                                                            <li>Respiratory Rate:</li>
+                                                            <li>Temperature:</li>
+                                                            <li>Weight:</li>
+                                                            <li>Height:</li>
+                                                        </ul>
+
+                                                        <li><b> Milestone Development:</b></li>
+                                                        <ul class="tox-checklist">Begins to sit with support 
+                                                        <li>Begins to roll from back to tummy</li>
+                                                        <li>Explores objects with mouth</li>
+                                                        <li>Begins to babble with consonant sounds</li>
+                                                        </ul>
                                                         <li>Laboratory:</li>
                                                         <li>Medication Given:</li>
                                                         <li>Doctor’s Note:</li>
@@ -356,15 +402,24 @@ $_SESSION['account_id'];
                                     <p style="text-align: center; font-weight: bold;">6th Month</p>
                                         <table style="width: 100%; table-layout: fixed;">
                                             <tr>
-                                                <td>
+                                            <td>
                                                     <ul>
                                                         <li>Diet:</li>
-                                                        <li>Vital Signs:</li>
-                                                        <li>Pulse Rate:</li>
-                                                        <li>Respiratory Rate:</li>
-                                                        <li>Temperature:</li>
-                                                        <li>Weight:</li>
-                                                        <li>Height:</li>
+                                                        <li><b>Vital Signs:</b></li>
+                                                        <ul>
+                                                            <li>Pulse Rate:</li>
+                                                            <li>Respiratory Rate:</li>
+                                                            <li>Temperature:</li>
+                                                            <li>Weight:</li>
+                                                            <li>Height:</li>
+                                                        </ul>
+
+                                                        <li><b> Milestone Development:</b></li>
+                                                        <ul class="tox-checklist">Begins to sit without support for short periods
+                                                        <li>Begins to pass objects from one hand to the other</li>
+                                                        <li>Begins to respond to own name</li>
+                                                        <li>Begins to show stranger anxiety</li>
+                                                        </ul>
                                                         <li>Laboratory:</li>
                                                         <li>Medication Given:</li>
                                                         <li>Doctor’s Note:</li>
@@ -381,15 +436,24 @@ $_SESSION['account_id'];
                                         <p style="text-align: center; font-weight: bold;">7th Month</p>
                                         <table style="width: 100%; table-layout: fixed;">
                                             <tr>
-                                                <td>
+                                            <td>
                                                     <ul>
                                                         <li>Diet:</li>
-                                                        <li>Vital Signs:</li>
-                                                        <li>Pulse Rate:</li>
-                                                        <li>Respiratory Rate:</li>
-                                                        <li>Temperature:</li>
-                                                        <li>Weight:</li>
-                                                        <li>Height:</li>
+                                                        <li><b>Vital Signs:</b></li>
+                                                        <ul>
+                                                            <li>Pulse Rate:</li>
+                                                            <li>Respiratory Rate:</li>
+                                                            <li>Temperature:</li>
+                                                            <li>Weight:</li>
+                                                            <li>Height:</li>
+                                                        </ul>
+
+                                                        <li><b> Milestone Development:</b></li>
+                                                        <ul class="tox-checklist">Begins to bear weight on legs when held upright
+                                                        <li>Begins to crawl (or scoot)</li>
+                                                        <li>Begins to respond to simple commands (e.g., "come here")</li>
+                                                        <li>Begins to understand "no"</li>
+                                                        </ul>
                                                         <li>Laboratory:</li>
                                                         <li>Medication Given:</li>
                                                         <li>Doctor’s Note:</li>
@@ -402,15 +466,24 @@ $_SESSION['account_id'];
                                     <p style="text-align: center; font-weight: bold;">8th Month</p>
                                         <table style="width: 100%; table-layout: fixed;">
                                             <tr>
-                                                <td>
+                                            <td>
                                                     <ul>
                                                         <li>Diet:</li>
-                                                        <li>Vital Signs:</li>
-                                                        <li>Pulse Rate:</li>
-                                                        <li>Respiratory Rate:</li>
-                                                        <li>Temperature:</li>
-                                                        <li>Weight:</li>
-                                                        <li>Height:</li>
+                                                        <li><b>Vital Signs:</b></li>
+                                                        <ul>
+                                                            <li>Pulse Rate:</li>
+                                                            <li>Respiratory Rate:</li>
+                                                            <li>Temperature:</li>
+                                                            <li>Weight:</li>
+                                                            <li>Height:</li>
+                                                        </ul>
+
+                                                        <li><b> Milestone Development:</b></li>
+                                                        <ul class="tox-checklist">Begins to pull self to standing position
+                                                        <li>Begins to play peek-a-boo</li>
+                                                        <li>Begins to say "mama" and "dada" nonspecifically</li>
+                                                        <li>Begins to understand simple gestures (e.g., waving bye-bye)</li>
+                                                        </ul>
                                                         <li>Laboratory:</li>
                                                         <li>Medication Given:</li>
                                                         <li>Doctor’s Note:</li>
@@ -427,15 +500,24 @@ $_SESSION['account_id'];
                                         <p style="text-align: center; font-weight: bold;">9th Month</p>
                                         <table style="width: 100%; table-layout: fixed;">
                                             <tr>
-                                                <td>
+                                            <td>
                                                     <ul>
                                                         <li>Diet:</li>
-                                                        <li>Vital Signs:</li>
-                                                        <li>Pulse Rate:</li>
-                                                        <li>Respiratory Rate:</li>
-                                                        <li>Temperature:</li>
-                                                        <li>Weight:</li>
-                                                        <li>Height:</li>
+                                                        <li><b>Vital Signs:</b></li>
+                                                        <ul>
+                                                            <li>Pulse Rate:</li>
+                                                            <li>Respiratory Rate:</li>
+                                                            <li>Temperature:</li>
+                                                            <li>Weight:</li>
+                                                            <li>Height:</li>
+                                                        </ul>
+
+                                                        <li><b> Milestone Development:</b></li>
+                                                        <ul class="tox-checklist">Begins to cruise (walk while holding onto furniture) 
+                                                        <li>Begins to point at objects</li>
+                                                        <li>Begins to understand simple words like "ball" or "dog"</li>
+                                                        <li>Begins to demonstrate object permanence</li>
+                                                        </ul>
                                                         <li>Laboratory:</li>
                                                         <li>Medication Given:</li>
                                                         <li>Doctor’s Note:</li>
@@ -448,15 +530,24 @@ $_SESSION['account_id'];
                                     <p style="text-align: center; font-weight: bold;">10th Month</p>
                                         <table style="width: 100%; table-layout: fixed;">
                                             <tr>
-                                                <td>
+                                            <td>
                                                     <ul>
                                                         <li>Diet:</li>
-                                                        <li>Vital Signs:</li>
-                                                        <li>Pulse Rate:</li>
-                                                        <li>Respiratory Rate:</li>
-                                                        <li>Temperature:</li>
-                                                        <li>Weight:</li>
-                                                        <li>Height:</li>
+                                                        <li><b>Vital Signs:</b></li>
+                                                        <ul>
+                                                            <li>Pulse Rate:</li>
+                                                            <li>Respiratory Rate:</li>
+                                                            <li>Temperature:</li>
+                                                            <li>Weight:</li>
+                                                            <li>Height:</li>
+                                                        </ul>
+
+                                                        <li><b> Milestone Development:</b></li>
+                                                        <ul class="tox-checklist">Begins to stand without support for brief periods
+                                                        <li>Begins to wave bye-bye</li>
+                                                        <li>Begins to use gestures to communicate (e.g., shaking head for "no")</li>
+                                                        <li>Begins to understand simple instructions</li>
+                                                        </ul>
                                                         <li>Laboratory:</li>
                                                         <li>Medication Given:</li>
                                                         <li>Doctor’s Note:</li>
@@ -473,15 +564,24 @@ $_SESSION['account_id'];
                                         <p style="text-align: center; font-weight: bold;">11th Month</p>
                                         <table style="width: 100%; table-layout: fixed;">
                                             <tr>
-                                                <td>
+                                            <td>
                                                     <ul>
                                                         <li>Diet:</li>
-                                                        <li>Vital Signs:</li>
-                                                        <li>Pulse Rate:</li>
-                                                        <li>Respiratory Rate:</li>
-                                                        <li>Temperature:</li>
-                                                        <li>Weight:</li>
-                                                        <li>Height:</li>
+                                                        <li><b>Vital Signs:</b></li>
+                                                        <ul>
+                                                            <li>Pulse Rate:</li>
+                                                            <li>Respiratory Rate:</li>
+                                                            <li>Temperature:</li>
+                                                            <li>Weight:</li>
+                                                            <li>Height:</li>
+                                                        </ul>
+
+                                                        <li><b> Milestone Development:</b></li>
+                                                        <ul class="tox-checklist">Begins to take a few steps without support (walking may vary widely at this age)
+                                                        <li>Begins to play simple games like pat-a-cake</li>
+                                                        <li>Begins to show preference for certain toys</li>
+                                                        <li>Begins to respond to simple questions with gestures or sounds</li>
+                                                        </ul>
                                                         <li>Laboratory:</li>
                                                         <li>Medication Given:</li>
                                                         <li>Doctor’s Note:</li>
@@ -494,15 +594,24 @@ $_SESSION['account_id'];
                                     <p style="text-align: center; font-weight: bold;">12th Month</p>
                                         <table style="width: 100%; table-layout: fixed;">
                                             <tr>
-                                                <td>
+                                            <td>
                                                     <ul>
                                                         <li>Diet:</li>
-                                                        <li>Vital Signs:</li>
-                                                        <li>Pulse Rate:</li>
-                                                        <li>Respiratory Rate:</li>
-                                                        <li>Temperature:</li>
-                                                        <li>Weight:</li>
-                                                        <li>Height:</li>
+                                                        <li><b>Vital Signs:</b></li>
+                                                        <ul>
+                                                            <li>Pulse Rate:</li>
+                                                            <li>Respiratory Rate:</li>
+                                                            <li>Temperature:</li>
+                                                            <li>Weight:</li>
+                                                            <li>Height:</li>
+                                                        </ul>
+
+                                                        <li><b> Milestone Development:</b></li>
+                                                        <ul class="tox-checklist">May be walking independently or with minimal support
+                                                        <li>Begins to use simple gestures or words to communicate needs</li>
+                                                        <li>Begins to show interest in pretend play</li>
+                                                        <li>Begins to imitate others' actions</li>
+                                                        </ul>
                                                         <li>Laboratory:</li>
                                                         <li>Medication Given:</li>
                                                         <li>Doctor’s Note:</li>
@@ -560,6 +669,7 @@ $_SESSION['account_id'];
     toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat | fontzie' ,
     default_font_stack: [ '-apple-system', 'Arial' ]
   });
+  
 </script>
 <script src="https://code.jquery.com/jquery-3.7.1.js" ></script>
 
