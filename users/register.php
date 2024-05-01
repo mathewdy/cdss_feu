@@ -231,18 +231,6 @@ if(isset($_POST['create_account'])){
     
         $account_id = "2024".rand('1','10') . substr(str_shuffle(str_repeat("0123456789", 5)), 0, 3) ;
     
-        if(!in_array($file_extension,$allowed_extension)){
-            echo "<script>alert('File not allowed'); </script>";
-            echo "<script>window.location.href='register.php'</script>";
-        }else{
-            
-            if(file_exists("images/" .$_FILES['user_image']['name'])){
-                echo "<script>alert('Select other picture') </script>";
-                echo "<script>window.location.href='register.php'</script>";
-                $filename = $_FILES['user_image']['name'];
-            }
-        }
-    
     
         $query_check_user = "SELECT * FROM users WHERE username='$username' AND first_name = '$first_name' AND last_name = '$last_name' AND date_of_birth = '$date_of_birth' ";
         $run_check_user = mysqli_query($conn,$query_check_user);

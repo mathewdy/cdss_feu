@@ -610,7 +610,7 @@ $_SESSION['account_id'];
                                                         <ul class="tox-checklist">May be walking independently or with minimal support
                                                         <li>Begins to use simple gestures or words to communicate needs</li>
                                                         <li>Begins to show interest in pretend play</li>
-                                                        <li>Begins to imitate others' actions</li>
+                                                        <li>Begins to imitate others actions</li>
                                                         </ul>
                                                         <li>Laboratory:</li>
                                                         <li>Medication Given:</li>
