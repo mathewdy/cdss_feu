@@ -3,9 +3,15 @@
 include('../connection/connection.php');
 session_start();
 ob_start();
-$_SESSION['account_id'];
+$user_id = $_SESSION['account_id'];
 
-
+$q_user = "SELECT image FROM users WHERE account_id = $user_id";
+$q_run = mysqli_query($conn, $q_user);
+if(mysqli_num_rows($q_run) > 0){
+    foreach($q_run as $rows){
+        $image = $rows['image'];
+    }
+}
 
 ?>
 
@@ -42,14 +48,25 @@ $_SESSION['account_id'];
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row bg-success">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="home.php"><img src="../src/img/FEU_Tamaraws_official_logo.png" class="mr-2" alt="logo"/>FEU</a>
+        <a class="navbar-brand brand-logo mr-5 text-success" style="font-weight: 900;" href="home.php"><img src="../src/img/FEU_Tamaraws_official_logo.png" class="mr-2" alt="logo"/>FEU</a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="images/<?= $image; ?>" alt="profile"/>
+                <?php 
+                    if($image == '' || $image == null){
+                        ?>
+                        <img src="../src/img/default.png" alt="profile">
+                        <?php
+                    }else{
+                        ?>
+                        <img src="images/<?= $image; ?>" alt="profile"/>
+                        <?php
+                    }
+                
+                ?>
 
               <!-- pasiksik ng pic dito -->
             </a>
@@ -174,9 +191,27 @@ $_SESSION['account_id'];
                             </div>
                         </div>
                     </div>
-                    <div class="card">
                     <form action="" method="POST" enctype='multipart/form-data'>
+                        <div class="d-flex justify-content-end mb-3">
+                        <?php
+                        
+                        if(empty($row_patient['remarks_assessments'])){
+                            ?>
+                                <input type="submit" class="btn btn-mb btn-info" name="create_cdss_patient" value="Save">
+                            <?php
+                        }else{
+                            ?>
+                                <input type="submit" class="btn btn-mb btn-success" name="update_cdss_patient" value="Update">
+                            <?php
+                        }
+                        
+                        ?>
+                        </div>
+                   
+
+                    <div class="card">
                     <input type="hidden" name="patient_id" value="<?php echo $row_patient['patient_id']?>">
+
                         <textarea name="patients_assessments" id="checklist"><?php if(empty($row_patient['remarks_assessments'])){
                                 ?>
                             <table style="width: 100%; table-layout:fixed">
@@ -630,30 +665,24 @@ $_SESSION['account_id'];
                             }
                             ?>
                         </textarea>
-                        <?php
                         
-                        if(empty($row_patient['remarks_assessments'])){
-                            ?>
-                                <input type="submit" name="create_cdss_patient" value="Save">
-                            <?php
-                        }else{
-                            ?>
-                                <input type="submit" name="update_cdss_patient" value="Update">
-                            <?php
-                        }
-                        
-                        ?>
-
                        
-                    </form>
+                    
                 <?php
             }
         }
     }
 ?>
       </div>
+      </form>
     </div>
+    
   </div>
+  <footer class="footer">
+          <div class="d-sm-flex justify-content-center">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024. All rights reserved.</span>
+          </div>
+        </footer> 
 <script src="https://cdn.tiny.cloud/1/hh66v9nxb8r5lqopiz2zr5m37mfer93964ycvrhwdbazox0d/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
 <script>
@@ -719,7 +748,14 @@ if(isset($_POST['create_cdss_patient'])){
         // subject to revise
         echo "added";
     }else{
-        echo "error";
+        echo '<script type="text/javascript">
+
+        $(document).ready(function(){
+            swal("Error!", "Something went wrong.", "error")
+        });
+        
+        </script>
+        ';
     }
 
     
@@ -742,7 +778,14 @@ if(isset($_POST['update_cdss_patient'])){
         // subject to revise
         echo "updated";
     }else{
-        echo "error";
+        echo '<script type="text/javascript">
+  
+        $(document).ready(function(){
+            swal("Error!", "Something went wrong.", "error")
+        });
+          
+        </script>
+        ';
     }
 }
 

@@ -63,7 +63,7 @@ if(mysqli_num_rows($q_run) > 0){
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="home.php"><img src="../src/img/FEU_Tamaraws_official_logo.png" class="mr-2" alt="logo"/>FEU</a>
+        <a class="navbar-brand brand-logo mr-5 text-success" style="font-weight: 900;" href="home.php"><img src="../src/img/FEU_Tamaraws_official_logo.png" class="mr-2" alt="logo"/>FEU</a>
         <a class="navbar-brand brand-logo-mini" href="home.php"><img src="../src/img/FEU_Tamaraws_official_logo.png" class="mr-2" alt="logo"/></a>
 
       </div>
@@ -72,7 +72,18 @@ if(mysqli_num_rows($q_run) > 0){
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="images/<?= $image; ?>" alt="profile"/>
+            <?php 
+                    if($image == '' || $image == null){
+                        ?>
+                        <img src="../src/img/default.png" alt="profile">
+                        <?php
+                    }else{
+                        ?>
+                        <img src="images/<?= $image; ?>" alt="profile"/>
+                        <?php
+                    }
+                
+                ?>
 
               <!-- pasiksik ng pic dito -->
             </a>
@@ -276,10 +287,11 @@ if(mysqli_num_rows($q_run) > 0){
                     </div>
                 </div>  
             </div>
+        </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
-        <footer class="footer">
-          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+        <footer class="footer text-center">
+          <div class="d-sm-flex justify-content-center">
             <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024. All rights reserved.</span>
           </div>
         </footer> 

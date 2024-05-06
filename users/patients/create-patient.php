@@ -48,8 +48,8 @@ if(mysqli_num_rows($q_run) > 0){
   <!-- <link rel="stylesheet" href="../../src/css/custom/modal.css"> -->
 </head>
 <style>
-    .tr .td{
-        cursor: pointer !important;
+    .card{
+        border-radius: 0 !important;
     }
 </style>
 <body>
@@ -57,7 +57,7 @@ if(mysqli_num_rows($q_run) > 0){
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="home.php"><img src="../../src/img/FEU_Tamaraws_official_logo.png" class="mr-2" alt="logo"/>FEU</a>
+        <a class="navbar-brand brand-logo mr-5 text-success" style="font-weight: 900;" href="home.php"><img src="../../src/img/FEU_Tamaraws_official_logo.png" class="mr-2" alt="logo"/>FEU</a>
         <a class="navbar-brand brand-logo-mini" href="home.php"><img src="../../src/img/FEU_Tamaraws_official_logo.png" class="mr-2" alt="logo"/></a>
 
       </div>
@@ -66,7 +66,18 @@ if(mysqli_num_rows($q_run) > 0){
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="images/<?= $image; ?>" alt="profile"/>
+            <?php 
+                    if($image == '' || $image == null){
+                        ?>
+                        <img src="../../src/img/default.png" alt="profile">
+                        <?php
+                    }else{
+                        ?>
+                        <img src="images/<?= $image; ?>" alt="profile"/>
+                        <?php
+                    }
+                
+                ?>
 
               <!-- pasiksik ng pic dito -->
             </a>
@@ -97,18 +108,109 @@ if(mysqli_num_rows($q_run) > 0){
                             </ol>
                         </nav>
                     </div>
-                    <div class="col-md-12 grid-margin stretch-card">  
-                        <div class="card">
-                            <div class="card-people mt-auto p-4">
-                                <form action="" method="POST" enctype='multipart/form-data'>
-                                    <div class="row mb-4">
-                                        <div class="col-lg-12">
+                    <div class="col-md-12"> 
+                        <div class="container-fluid">
+                            <form action="" method="POST" enctype='multipart/form-data'>
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="row flex-column">
+                                            <div class="col-lg-12 mb-4">
+                                                <div class="card p-5">
+                                                    <h2 class="h2">Mother</h2>
+                                                    <p class="text-muted mb-5">Mother's Basic Information.</p>
+                                                    <div class="row mb-5">
+                                                        <div class="col-lg-4 col-md-12 mb-4">
+                                                            <label for="">First Name:</label>
+                                                            <input type="text" class="form-control form-control-sm" name="first_name_mother">
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-12 mb-4">
+                                                            <label for="">Middle Name:</label>
+                                                            <input type="text" class="form-control form-control-sm" name="middle_name_mother">
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-12 mb-4">
+                                                            <label for="">Last Name:</label>
+                                                            <input type="text" class="form-control form-control-sm" name="last_name_mother">
+                                                            <br>
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-12 mb-4">
+                                                            <label for="">Date of Birth:</label>
+                                                            <input type="date" class="form-control form-control-sm" name="date_of_birth_mother">
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-12 mb-4">
+                                                            <label for="">Contact Number:</label>
+                                                            <input type="text" class="form-control form-control-sm" name="contact_number_mother">
+                                                        </div>
+                                                        <div class="col-lg-12 mb-4">
+                                                            <label for="">Image:</label><br>
+                                                            <input type="file" name="image_mother" multiple="">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <h2>Address</h2>
+
+                                                            <label for="">Address:</label>
+                                                            <input type="text" class="form-control form-control-sm" name="address_mother" id="address1">
+                                                            <input type="checkbox" name="" id="check_address">
+                                                            <label for="">Same address for father</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="card p-5">
+                                                <h2 class="h2">Father</h2>
+                                                <p class="text-muted mb-5">Father's Basic Information.</p>
+                                                    <div class="row mb-5">
+                                                        <div class="col-lg-4 col-md-12 mb-4">
+                                                            <label for="">First Name:</label>
+                                                            <input type="text" class="form-control form-control-sm" name="first_name_father">
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-12 mb-4">
+                                                        <label for="">Middle Name:</label>
+                                                            <input type="text" class="form-control form-control-sm" name="middle_name_father">
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-12 mb-4">
+                                                            <label for="">Last Name:</label>
+                                                            <input type="text" class="form-control form-control-sm" name="last_name_father">
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-12 mb-4">
+                                                            <label for="">Date of Birth:</label>
+                                                            <input type="date" class="form-control form-control-sm" name="date_of_birth_father">
+                                                            
+                                                           
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-12 mb-4">
+                                                            <label for="">Image:</label><br>
+                                                            <input type="file" name="image_father" multiple="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <h2>Address</h2>
+
+                                                            <label for="">Address:</label>
+                                                            <input type="text" class="form-control form-control-sm" name="address_father" id="address2">
+                                                                <br>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <span class="d-flex justify-content-between align-items-center">
                                             <h2>Infant</h2>
-                                            <a href="javascript:void(0)" class="add-more-form">Add</a>
+                                            <a href="javascript:void(0)" class="add-more-form btn btn-md btn-info" style="border-radius:0;">Add</a>
+                                        </span>
+                                       
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <div class="main-form row">
-                                                        <div class="col-lg-4">
+                                                        <div class="col-lg-12">
                                                             <label for="">First Name:</label>
                                                             <input type="text" class="form-control" name="first_name_infant[]">
                                                             <br>
@@ -147,104 +249,22 @@ if(mysqli_num_rows($q_run) > 0){
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        
                                     </div>
-                                    <hr class="featurette-divider">
-                                    <div class="row mb-5">
-                                        <div class="col-lg-6">
-                                            <h2>Name of Mother</h2>
-                                            <label for="">First Name:</label>
-                                            <input type="text" name="first_name_mother">
-                                            <br>
+                                </div>
+                                <div class="d-flex justify-content-end mt-3">
+                                    <input type="submit" class="btn btn-md btn-inverse-info" name="create_patient" value="Save">
 
-                                            <label for="">Middle Name:</label>
-                                            <input type="text" name="middle_name_mother">
-                                            <br>
-
-                                            <label for="">Last Name:</label>
-                                            <input type="text" name="last_name_mother">
-                                            <br>
-
-                                            <label for="">Date of Birth:</label>
-                                            <input type="date" name="date_of_birth_mother">
-                                            <br>
-
-                                            <label for="">Contact Number:</label>
-                                            <input type="text" name="contact_number_mother">
-                                            <br>
-
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <h2>Address</h2>
-
-                                            <label for="">Address:</label>
-                                            <input type="text" name="address_mother" id="address1">
-
-                                            <br>
-
-                                            <label for="">Image:</label>
-                                            <input type="file" name="image_mother" multiple="">
-                                            <br>
-
-                                            <input type="checkbox" name="" id="check_address">
-                                            <label for="">Same address for father</label>
-                                        </div>
-                                    </div>
-                                    <hr class="featurette-divider">
-
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <h2>Name of Father</h2>
-                                            <label for="">First Name:</label>
-                                            <input type="text" name="first_name_father">
-                                            <br>
-
-                                            <label for="">Middle Name:</label>
-                                            <input type="text" name="middle_name_father">
-                                            <br>
-
-                                            <label for="">Last Name:</label>
-                                            <input type="text" name="last_name_father">
-                                            <br>
-
-                                            <label for="">Date of Birth:</label>
-                                            <input type="date" name="date_of_birth_father">
-
-                                           
-
-                                            <!-- stepper
-                                            1. Infant
-                                            2. Mother
-                                            3. Father
-                                            4. Save
-                                            patapusin mo lang code ko -->
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <h2>Address</h2>
-
-                                            <label for="">Address:</label>
-                                            <input type="text" name="address_father" id="address2">
-                                                <br>
-
-                                            <label for="">Image:</label>
-                                            <input type="file" name="image_father" multiple="">
-                                                <br>
-                                        </div>
-                                    </div>
-                                    <input type="submit" name="create_patient" value="Save">
-                                    </form>
-                            </div>
+                                </div>
+                                
+                            </form>
                         </div>
-
-
                     </div>
                 </div>  
             </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
-          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+          <div class="d-sm-flex justify-content-center">
             <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024. All rights reserved.</span>
           </div>
         </footer> 
@@ -328,7 +348,14 @@ if(isset($_POST['create_patient'])){
         $run_query_check_infant = mysqli_query($conn,$query_check_infant);
 
         if(mysqli_num_rows($run_query_check_infant) > 0){
-             echo "infant already added";
+            echo '<script type="text/javascript">
+  
+            $(document).ready(function(){
+              swal("Error!", "Infant already added!", "error")
+            });
+            
+            </script>
+            ';
         }else{
             $query_infant = "INSERT INTO infants (patient_id,first_name,middle_name,last_name,suffix,date_of_birth,gender,marital_status,image,id_mother_parent,id_father_parent,id_remarks,date_created,date_updated,modified_by) VALUES ('$data_patient_id' + 3,'$data_first_name_infant','$data_middle_name_infant','$data_last_name_infant','$data_suffix_infant','$data_date_of_birth_infant','$data_gender_infant','$data_marital_status_infant','".$value."', '$account_id_mother','$account_id_father','0','$date','$date', '$account_id_user')";
             $result_infant = mysqli_query ($conn,$query_infant);
@@ -394,7 +421,14 @@ if(isset($_POST['create_patient'])){
 
     if(mysqli_num_rows($result_check_father) > 0){
         // subject for modification
-        echo "father already added";
+        echo '<script type="text/javascript">
+  
+        $(document).ready(function(){
+          swal("Error!", "Father already added.", "error")
+        });
+        
+        </script>
+        ';
     }else{
 
         $query_patient_id_father = "SELECT * FROM infants WHERE id_father_parent = '$account_id_father'";
@@ -413,7 +447,14 @@ if(isset($_POST['create_patient'])){
                     echo "added father"; 
                 }else{
                     // subject for modification
-                    echo "not added father";
+                    echo '<script type="text/javascript">
+  
+                    $(document).ready(function(){
+                      swal("Error!", "Something went wrong.", "error")
+                    });
+                    
+                    </script>
+                    ';
                 }
             }
         }

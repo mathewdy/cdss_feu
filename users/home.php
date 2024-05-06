@@ -53,16 +53,25 @@ if(mysqli_num_rows($q_run) > 0){
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row bg-success">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="home.php"><img src="../src/img/FEU_Tamaraws_official_logo.png" class="mr-2" alt="logo"/>FEU</a>
+        <a class="navbar-brand brand-logo mr-5 text-success" style="font-weight: 900;" href="home.php"><img src="../src/img/FEU_Tamaraws_official_logo.png" class="mr-2" alt="logo"/>FEU</a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="images/<?= $image; ?>" alt="profile"/>
-
-              <!-- pasiksik ng pic dito -->
+            <?php 
+                    if($image == '' || $image == null){
+                        ?>
+                        <img src="../src/img/default.png" alt="profile">
+                        <?php
+                    }else{
+                        ?>
+                        <img src="images/<?= $image; ?>" alt="profile"/>
+                        <?php
+                    }
+                
+                ?>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item" href="my-profile.php">
@@ -148,7 +157,7 @@ if(mysqli_num_rows($q_run) > 0){
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
-          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+          <div class="d-sm-flex justify-content-center">
             <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024. All rights reserved.</span>
           </div>
         </footer> 
