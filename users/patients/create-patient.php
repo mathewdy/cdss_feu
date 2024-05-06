@@ -57,7 +57,7 @@ if(mysqli_num_rows($q_run) > 0){
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5 text-success" style="font-weight: 900;" href="home.php"><img src="../../src/img/FEU_Tamaraws_official_logo.png" class="mr-2" alt="logo"/>FEU</a>
+        <a class="navbar-brand brand-logo mr-5 text-success" style="font-weight: 900;" href="../home.php"><img src="../../src/img/FEU_Tamaraws_official_logo.png" class="mr-2" alt="logo"/>FEU</a>
         <a class="navbar-brand brand-logo-mini" href="home.php"><img src="../../src/img/FEU_Tamaraws_official_logo.png" class="mr-2" alt="logo"/></a>
 
       </div>
@@ -202,15 +202,14 @@ if(mysqli_num_rows($q_run) > 0){
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
-                                        <span class="d-flex justify-content-between align-items-center">
-                                            <h2>Infant</h2>
-                                            <a href="javascript:void(0)" class="add-more-form btn btn-md btn-info" style="border-radius:0;">Add</a>
-                                        </span>
-                                       
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <div class="main-form row">
-                                                        <div class="col-lg-12">
+                                                        <div class="card col-lg-12 p-5 mb-4">
+                                                            <span class="d-flex justify-content-between align-items-center">
+                                                                <h2>Infant</h2>
+                                                                <a href="javascript:void(0)" class="add-more-form btn btn-md btn-info" style="border-radius:0;">Add</a>
+                                                            </span>
                                                             <label for="">First Name:</label>
                                                             <input type="text" class="form-control" name="first_name_infant[]">
                                                             <br>
