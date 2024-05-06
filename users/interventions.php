@@ -15,15 +15,27 @@ include('.././connection/connection.php');
 </head>
 <body>
     
-
 <?php
 
+    if(isset($_GET['patient_id'])){
+        $patient_id = $_GET['patient_id'];
 
+        $query = "SELECT * FROM infants WHERE patient_id = '$patient_id'";
+        $run = mysqli_query($conn,$query);
 
+        if(mysqli_num_rows($run) > 0){
+            foreach($run as $row_patient){
+                ?>
+
+                    <a href="view-patient.php?patient_id=<?php echo $row_patient['patient_id']?>">Back</a>
+
+                <?php
+            }
+        }
+    }
 
 ?>
 
-<a href="view-patient.php">Back</a>
 
 <h2>Interventions</h2>
 

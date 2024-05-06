@@ -126,6 +126,11 @@ if(mysqli_num_rows($q_run) > 0){
                             <div class="card-footer text-center bg-white">
                                 <p class="h5 text-muted italic"><i>Patient Id: <?php echo $row_patient['patient_id']?></i></p>
                             </div>
+                            <nav aria-label="breadcrumb" >
+                                <ol class="breadcrumb" style="border: none;">
+                                    <li class="breadcrumb-item" aria-current="page"><a href="interventions.php?patient_id=<?php echo $row_patient['patient_id']?>">Interventions</a></li>
+                                </ol>
+                            </nav>
                         </div>
                         <div class="col-lg-8">
                             <div class="row">
