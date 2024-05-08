@@ -112,7 +112,55 @@ if(mysqli_num_rows($q_run) > 0){
                         <div class="container-fluid">
                             <form action="" method="POST" enctype='multipart/form-data'>
                                 <div class="row">
-                                    <div class="col-lg-8">
+                                    <div class="col-lg-5">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="main-form row">
+                                                        <div class="card col-lg-12 p-5 mb-4">
+                                                            <span class="d-flex justify-content-between align-items-center">
+                                                                <h2>Infant</h2>
+                                                                <a href="javascript:void(0)" class="add-more-form btn btn-md btn-info" style="border-radius:0;">Add</a>
+                                                            </span>
+                                                            <label for="">First Name:</label>
+                                                            <input type="text" class="form-control" name="first_name_infant[]">
+                                                            <br>
+                                                            <label for="">Middle Name:</label>
+                                                            <input type="text" class="form-control" name="middle_name_infant[]">
+                                                            <br>
+                                                            <label for="">Last Name:</label>
+                                                            <input type="text" class="form-control" name="last_name_infant[]">
+                                                            <br>
+                                                            <label for="">Suffix:</label>
+                                                            <input type="text" class="form-control" name="suffix_infant[]">
+                                                            <br>
+                                                            <label for="">Date of Birth:</label>
+                                                            <input type="date" class="form-control" name="date_of_birth_infant[]" id="">
+                                                            <br>
+                                                            <label for="">Gender:</label>
+                                                            <select class="form-control" name="gender_infant[]" id="">
+                                                                <option value="">-Select-</option>
+                                                                <option value="1">Male</option>
+                                                                <option value="2">Female</option>
+                                                            </select>
+                                                            <br>
+                                                            <label for="">Marital Status:</label>
+                                                            <select class="form-control" name="marital_status_infant[]" id="">
+                                                                <option value="">-Select-</option>
+                                                                <option value="1">Single</option>
+                                                                <option value="2">Married</option>
+                                                                <option value="3">Divorced</option>
+                                                                <option value="4">Separated</option>
+                                                            </select>
+                                                            <br>
+                                                            <label for="">Image:</label>
+                                                            <input type="file" name="image_infant[]" multiple="">
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="col-lg-7">
                                         <div class="row flex-column">
                                             <div class="col-lg-12 mb-4">
                                                 <div class="card p-5">
@@ -201,54 +249,7 @@ if(mysqli_num_rows($q_run) > 0){
                                           
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="main-form row">
-                                                        <div class="card col-lg-12 p-5 mb-4">
-                                                            <span class="d-flex justify-content-between align-items-center">
-                                                                <h2>Infant</h2>
-                                                                <a href="javascript:void(0)" class="add-more-form btn btn-md btn-info" style="border-radius:0;">Add</a>
-                                                            </span>
-                                                            <label for="">First Name:</label>
-                                                            <input type="text" class="form-control" name="first_name_infant[]">
-                                                            <br>
-                                                            <label for="">Middle Name:</label>
-                                                            <input type="text" class="form-control" name="middle_name_infant[]">
-                                                            <br>
-                                                            <label for="">Last Name:</label>
-                                                            <input type="text" class="form-control" name="last_name_infant[]">
-                                                            <br>
-                                                            <label for="">Suffix:</label>
-                                                            <input type="text" class="form-control" name="suffix_infant[]">
-                                                            <br>
-                                                            <label for="">Date of Birth:</label>
-                                                            <input type="date" class="form-control" name="date_of_birth_infant[]" id="">
-                                                            <br>
-                                                            <label for="">Gender:</label>
-                                                            <select class="form-control" name="gender_infant[]" id="">
-                                                                <option value="">-Select-</option>
-                                                                <option value="1">Male</option>
-                                                                <option value="2">Female</option>
-                                                            </select>
-                                                            <br>
-                                                            <label for="">Marital Status:</label>
-                                                            <select class="form-control" name="marital_status_infant[]" id="">
-                                                                <option value="">-Select-</option>
-                                                                <option value="1">Single</option>
-                                                                <option value="2">Married</option>
-                                                                <option value="3">Divorced</option>
-                                                                <option value="4">Separated</option>
-                                                            </select>
-                                                            <br>
-                                                            <label for="">Image:</label>
-                                                            <input type="file" name="image_infant[]" multiple="">
-                                                        </div>
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
-                                    </div>
+
                                 </div>
                                 <div class="d-flex justify-content-end mt-3">
                                     <input type="submit" class="btn btn-md btn-inverse-info" name="create_patient" value="Save">

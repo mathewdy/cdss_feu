@@ -37,24 +37,21 @@ include('../connection/connection.php');
         <div class="row w-100 mx-0">
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-              <h4>Hello! let's get started</h4>
-              <h6 class="font-weight-light">Sign in to continue.</h6>
+              <!-- <h4>Forgot Password</h4> -->
+              <!-- <h6 class="font-weight-light">Sign in to continue.</h6> -->
               <form class="pt-3" action="" method="POST" >
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" name="username" placeholder="Username">
-                </div>
-                <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" name="password" placeholder="Password">
+                  <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" name="key" placeholder="Enter your Passkey">
                 </div>
                 <div class="mt-3">
-                  <input type="submit" class="btn btn-block btn-inverse-success btn-lg font-weight-medium auth-form-btn" name="login" value="Sign In">
+                  <input type="submit" class="btn btn-block btn-inverse-success btn-lg font-weight-medium auth-form-btn" name="confirm" value="Confirm">
                   
                 </div>
                 <div class="my-2 d-flex justify-content-center align-items-center">
-                  <a href="forgot-password.php" class="auth-link text-black">Forgot password?</a>
+                  <!-- <a href="#" class="auth-link text-black">Forgot password?</a> -->
                 </div>
                 <div class="text-center mt-4 font-weight-light">
-                  Don't have an account? <a href="register.php" class="text-success">Create</a>
+                  <!-- Don't have an account? <a href="register.php" class="text-success">Create</a> -->
                 </div>
               </form>
             </div>
@@ -86,13 +83,12 @@ include('../connection/connection.php');
 
 <?php
 
-if(isset($_POST['login'])){
+if(isset($_POST['confirm'])){
 
 
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    if(empty($username || $password)){
+    $passkey = $_POST['key'];
+    $link_key = password_hash($passkey, PASSWORD_DEFAULT);
+    if(empty($passkey)){
       echo '<script type="text/javascript">
 
       $(document).ready(function(){
@@ -101,16 +97,7 @@ if(isset($_POST['login'])){
       
       </script>
       ';
-    }elseif($username == ''){
-      echo '<script type="text/javascript">
-
-      $(document).ready(function(){
-          sweetAlert("Oops...", "Something went wrong!", "error");
-      });
-      
-      </script>
-      ';
-    }elseif($password == ''){
+    }elseif($passkey == ''){
       echo '<script type="text/javascript">
 
       $(document).ready(function(){
@@ -120,18 +107,14 @@ if(isset($_POST['login'])){
       </script>
       ';
     }else{
-      $query_login = "SELECT * FROM users WHERE username = '$username'";
+      $query_login = "SELECT * FROM users WHERE passkey = '$passkey'";
       $run_login = mysqli_query($conn,$query_login);
   
       if(mysqli_num_rows($run_login) > 0){
           foreach($run_login as $row){
-              if(password_verify($password,$row['password'])){
-                  $_SESSION['username'] = $username;
-                  $_SESSION['account_id'] = $row['account_id'];
-                  $_SESSION['first_name'] = $row['first_name'];
-                  $_SESSION['last_name'] = $row['last_name'];
-                  header("location: home.php");
-              }
+            if($row['passkey'] == $passkey){
+                header('location: reset-password.php?v=' . $link_key);
+            }
           }
       }else{
           echo '<script type="text/javascript">
@@ -143,7 +126,7 @@ if(isset($_POST['login'])){
           </script>
           ';
       }
-
+        
     }
    
 

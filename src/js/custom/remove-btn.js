@@ -8,6 +8,9 @@ $(document).ready(function () {
 
     $(document).on('click', '.add-more-form', function (){
         $('.main-form').append('<div class="additional card col-lg-12 p-5 mb-4">\
+            <span class="d-flex justify-content-end">\
+            <input type="submit" class="remove-button btn btn-md btn-danger" style="border-radius:0;" name="remove_infant" value="Remove" >\
+            </span>\
             <br>\
             <label for="">First Name:</label>\
             <input type="text" class="form-control form-control-sm" name="first_name_infant[]">\
@@ -43,7 +46,6 @@ $(document).ready(function () {
             <br>\
             <input type="file" name="image_infant[]"  class="mb-4" multiple="">\
             <br>\
-            <input type="submit" class="remove-button btn btn-md btn-danger" style="border-radius:0;" name="remove_infant" value="Remove" >\
             </div>\
             ');
     });
